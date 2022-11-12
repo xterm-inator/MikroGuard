@@ -1,0 +1,30 @@
+version: '2'
+services:
+#    api:
+#        build:
+#            context: ./api/
+#            dockerfile: web.docker
+#        ports:
+#            - "8000:80"
+#        links:
+#            - fpm
+#        volumes:
+#            - ./api/:/var/www
+    api:
+        build:
+            context: ./api/
+        volumes:
+            - ./php.ini:/usr/local/etc/php/conf.d/php.ini
+            - ./api:/var/www
+        ports:
+            - "8000:8000"
+    vue:
+        build:
+            context: ./frontend
+        ports:
+            - "3000:3000"
+            - "3101:3101"
+        volumes:
+            - ./frontend/:/opt/app
+            - /opt/node_modules
+        user: node

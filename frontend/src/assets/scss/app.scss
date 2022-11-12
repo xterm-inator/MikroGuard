@@ -1,0 +1,7 @@
+@import "@tabler/core/src/scss/tabler";
+
+$google-plus: #dd4b39 !default;
+
+.btn-outline-google-plus {
+    @include button-outline-variant($google-plus);
+}
