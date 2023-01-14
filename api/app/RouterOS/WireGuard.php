@@ -38,6 +38,28 @@ class WireGuard extends RouterOS
         return $response[0];
     }
 
+    public static function getPeers(): array
+    {
+        $routerOS = new self();
+
+        $query = new Query('/interface/wireguard/peers/print');
+        $query->where('interface', config('services.wireguard.interface'));
+
+        $response = $routerOS->client->query($query)->read();
+
+        if (!count($response)) {
+            return [];
+        }
+
+        $peers = [];
+
+        foreach ($response as $peer) {
+            $peers[$peer['public-key']] = $peer;
+        }
+
+        return $peers;
+    }
+
     public static function createPeer(Peer $peer): void
     {
         $routerOS = new self();

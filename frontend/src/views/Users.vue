@@ -12,10 +12,12 @@
       <div class="card-body p-0">
         <div class="dimmer">
           <div class="dimmer-content list-region">
-            <table class="table table-hover table-outline table-vcenter card-table m-0">
+            <table class="table table-hover table-outline table-vcenter table-mobile-md card-table m-0">
               <thead>
                 <tr>
                   <th>Email</th>
+                  <th>Activity</th>
+                  <th>Handshake</th>
                   <th width="50"></th>
                 </tr>
               </thead>

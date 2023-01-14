@@ -3,6 +3,15 @@
     <td>
       <router-link :to="{ name: 'users.connection', params: { id: props.user.id } }">{{ props.user.email }}</router-link>
     </td>
+    <td>
+      {{ prettyBytes(props.user.rx ?? 0) }}
+      <arrow-down-icon class="me-4"></arrow-down-icon>
+      {{ prettyBytes(props.user.tx ?? 0) }}
+      <arrow-up-icon class="me-4"></arrow-up-icon>
+    </td>
+    <td>
+      {{ lastHandshake }}
+    </td>
     <td class="text-right">
       <button class="btn btn-danger btn-sm pull-right" @click="handleDelete">Delete</button>
     </td>
@@ -12,6 +21,10 @@
 import { useUserStore } from '@/stores/user'
 import swal from 'sweetalert'
 import type { User } from '@/models/user.model'
+import prettyBytes from 'pretty-bytes'
+import { computed } from 'vue'
+import dayjs from 'dayjs'
+import { ArrowDownIcon, ArrowUpIcon } from 'vue-tabler-icons'
 
 interface Props {
   user: User
@@ -20,6 +33,14 @@ interface Props {
 const props = defineProps<Props>()
 
 const userStore = useUserStore();
+
+const lastHandshake = computed(() => {
+  if (props.user.last_handshake) {
+    return dayjs.utc(props.user.last_handshake).local().fromNow()
+  }
+
+  return '-'
+})
 
 async function handleDelete(): Promise<void> {
   const response = await swal({
