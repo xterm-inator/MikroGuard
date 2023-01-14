@@ -22,51 +22,8 @@ RUN composer install \
 FROM phpswoole/swoole:5.0-php8.1-alpine as base
 LABEL authors="David Smith <david@xterm.me>"
 
-#RUN apt-get update && apt-get install -y \
-#    git \
-#    libzip-dev \
-#    nginx \
-#    supervisor
-
 RUN docker-php-ext-install bcmath && \
     docker-php-ext-install sockets
-#    docker-php-ext-install opcache
-
-
-#RUN { \
-#        echo 'opcache.memory_consumption=128'; \
-#        echo 'opcache.interned_strings_buffer=8'; \
-#        echo 'opcache.max_accelerated_files=4000'; \
-#        echo 'opcache.revalidate_freq=2'; \
-#        echo 'opcache.fast_shutdown=1'; \
-#        echo 'opcache.enable_cli=1'; \
-#    } > /etc/php8/conf.d/php-opocache-cfg.ini
-
-
-
-# Install nginx
-#COPY build/install-nginx.sh /
-#RUN bash /install-nginx.sh
-#COPY nginx.conf /etc/nginx/sites-enabled/default.conf
-
-# Install Supervisord
-#RUN apt-get update && apt-get install -y supervisor \
-#&& rm -rf /var/lib/apt/lists/*
-
-# Custom Supervisord config
-#COPY build/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Copy stop-supervisor.sh to kill the supervisor and substasks on app failure
-#COPY build/stop-supervisor.sh /etc/supervisor/stop-supervisor.sh
-#RUN chmod +x /etc/supervisor/stop-supervisor.sh
-
-# Copy start.sh script that will check for a /app/prestart.sh script and run it before starting the app
-#COPY build/start.sh /start.sh
-#RUN chmod +x /start.sh
-
-# Copy the entrypoint that will generate Nginx additional configs
-#COPY build/entrypoint.sh /entrypoint.sh
-#RUN chmod +x /entrypoint.sh
 
 COPY --chown=www-data:www-data api /opt/app
 COPY --chown=www-data:www-data --from=vendor /app/vendor/ /opt/app/vendor
