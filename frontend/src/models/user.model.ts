@@ -4,7 +4,9 @@ export interface User {
   email: string
   data_up?: number
   data_down?: number
-  last_handshake?: Date
+  last_handshake?: Date,
+  rx?: number,
+  tx?: number,
 }
 
 export const DefaultUser: User = {
