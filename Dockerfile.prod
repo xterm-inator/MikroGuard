@@ -28,7 +28,7 @@ RUN docker-php-ext-install bcmath && \
 COPY --chown=www-data:www-data api /opt/app
 COPY --chown=www-data:www-data --from=vendor /app/vendor/ /opt/app/vendor
 COPY --chown=www-data:www-data --from=vuejs /opt/app/dist/ /opt/app/public
-RUN rm /opt/app/.env
+RUN rm -f /opt/app/.env
 RUN rm -rf /opt/app/storage/*
 RUN chown -R www-data:www-data /opt/app/storage
 
