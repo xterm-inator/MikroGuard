@@ -31,13 +31,13 @@ const router = createRouter({
     {
       path: '/users',
       name: 'users',
-      meta: { template: 'main', requiresAuth: true },
+      meta: { template: 'main', requiresAuth: true, roles: ['admin'] },
       component: () => import('../views/Users.vue')
     },
     {
       path: '/users/:id',
       name: 'users.connection',
-      meta: { template: 'main', requiresAuth: true },
+      meta: { template: 'main', requiresAuth: true, roles: ['admin'] },
       component: () => import('../views/Connection.vue'),
       props: true
     }

@@ -40,7 +40,7 @@
                   Connection
                 </template>
               </nav-item>
-              <nav-item name="users">
+              <nav-item name="users" v-if="user.role === 'admin'">
                 <template v-slot:icon>
                   <users-icon/>
                 </template>
