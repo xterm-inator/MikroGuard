@@ -2,17 +2,38 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - 'master'
+    tags:
+      - 'v*'
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - 'master'
 
 jobs:
-
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: alpine-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile.prod --tag xterminator1/microguard:latest
+      name: Checkout
+
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: |
+          ghcr.io/xterm-inator/microguard
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        file: ./Dockerfile.prod
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
