@@ -38,4 +38,4 @@ EXPOSE 8000
 
 VOLUME ["/opt/app/storage"]
 
-ENTRYPOINT ["docker/start.sh"]
+CMD ["docker/start.sh"]
