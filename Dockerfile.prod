@@ -28,9 +28,11 @@ RUN docker-php-ext-install bcmath && \
 COPY --chown=www-data:www-data api /opt/app
 COPY --chown=www-data:www-data --from=vendor /app/vendor/ /opt/app/vendor
 COPY --chown=www-data:www-data --from=vuejs /opt/app/dist/ /opt/app/public
+
 RUN rm -f /opt/app/.env
 RUN rm -rf /opt/app/storage/*
 RUN chown -R www-data:www-data /opt/app/storage
+RUN chmod +x /opt/app/docker/start.sh
 
 WORKDIR /opt/app
 
@@ -38,4 +40,4 @@ EXPOSE 8000
 
 VOLUME ["/opt/app/storage"]
 
-CMD ["docker/start.sh"]
+ENTRYPOINT ["docker/start.sh"]
