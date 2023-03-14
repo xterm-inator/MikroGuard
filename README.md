@@ -40,8 +40,10 @@ Currently, users can only login using google sso.
 > **warning:** Please read the previous warning before continuing, this is your last warning, this could be serious depending on your firewall config.
 
 ### Or using cmd (This is untested!!!)
+>Only recommended if you know what you are doing. 
 
 Enter the following commands to create a new user group:
+
 >This will create a new user group named "microguard-group" with the necessary permissions for MicroGuard.
 ```sh
 /user group add name=microguard-group policy=local,read,write,test,api,winbox,password
