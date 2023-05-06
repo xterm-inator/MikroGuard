@@ -1,5 +1,4 @@
 # MicroGuard
-# Note: Early Access, this has not been fully tested and everything in the readme may not be fully tested.
 ## This readme is a work in progress.
 
 MicroGuard is a web-based tool for managing WireGuard VPN clients on MikroTik routers. With MicroGuard, 
@@ -20,7 +19,7 @@ Currently, users can only login using google sso.
 - Docker (for running the MicroGuard server)
 
 ## Adding a User to MicroTik for MicroGuard
-
+### Using Winbox
 1. Log in to your MikroTik router using Winbox.
 2. Navigate to the "System" menu and select "Users".
 3. Click on the "Groups" tab.
@@ -39,8 +38,7 @@ Currently, users can only login using google sso.
 
 > **warning:** Please read the previous warning before continuing, this is your last warning, this could be serious depending on your firewall config.
 
-### Or using cmd (This is untested!!!)
->Only recommended if you know what you are doing. 
+### Or using cmd (Hasn't been fully tested)
 
 Enter the following commands to create a new user group:
 
