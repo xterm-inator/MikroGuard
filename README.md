@@ -1,5 +1,4 @@
 # MicroGuard
-## This readme is a work in progress.
 
 MicroGuard is a web-based tool for managing WireGuard VPN clients on MikroTik routers. With MicroGuard, 
 you can easily add new users, revoke access, and view connection statistics.
@@ -30,13 +29,10 @@ Currently, users can only login using google sso.
 8. Click on the "Users" tab.
 10. Enter the user's details, such as their name and password.
 
-> **warning:** Make sure to enter your local subnet into allowed address (unless you know what you are doing), 
-> if unsure please submit an issue, and we will try to help you
+> **warning:** Make sure to enter your local subnet into allowed address (unless you know what you are doing).
 
 11. In the "Groups" tab, select the "microguard-group" group you just created.
 12. Click on the "Apply" button to save the changes.
-
-> **warning:** Please read the previous warning before continuing, this is your last warning, this could be serious depending on your firewall config.
 
 ### Or using cmd (Hasn't been fully tested)
 
@@ -53,7 +49,7 @@ Enter the following command to create a new user:
 /user add name=username group=microguard-group password=userpassword
 ````
 
-> **warning:** Please see above warnings as they also apply for cmd.
+> **warning:** Please see above warning as that also applies for cmd.
 
 ## Creating a Road Warrior Wireguard interface for MicroGuard
 
@@ -66,8 +62,8 @@ Enter the following command to create a new user:
 ## Installation on a server
 
 1. Install Docker on your server.
-2. Pull the MicroGuard Docker image from the Docker Hub: `docker pull ghcr.io/xterm-inator/microguard:master`
-3. Start the MicroGuard server using the following command:
+2. Generate an app key using https://generate-random.org/laravel-key-generator and use that in following commands for APP_KEY
+4. Start the MicroGuard server using the following command:
 > Please read the following before running as some action is required.
 ````bash
 docker run -d
@@ -87,6 +83,32 @@ docker run -d
 -e APP_URL='https://my.public.address'
 ghcr.io/xterm-inator/microguard:master
 ````
+Or as a docker-compose.yml file
+```yml
+version: '3.8'
+services:
+  microguard:
+    image: ghcr.io/xterm-inator/microguard:master
+    container_name: microguard
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - /path/to/data:/opt/app/storage
+    environment:
+      - APP_KEY=
+      - GOOGLE_CLIENT_ID=
+      - GOOGLE_CLIENT_SECRET=
+      - GOOGLE_REDIRECT_URL=https://my.public.address/api/auth/oauth/google/callback
+      - ROUTEROS_HOST=192.168.0.1
+      - ROUTEROS_PORT=8728
+      - ROUTEROS_USER=wireguard
+      - ROUTEROS_PASS=wireguard pass
+      - ROUTEROS_WIREGUARD_INTERFACE=wireguard
+      - ROUTEROS_WIREGUARD_ENDPOINT=192.168.0.1:13231
+      - APP_URL=https://my.public.address
+
+```
 
 ## Usage
 
