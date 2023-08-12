@@ -2,7 +2,7 @@
 
 MicroGuard is a web-based tool for managing WireGuard VPN clients on MikroTik routers. With MicroGuard, 
 you can easily add new users, revoke access, and view connection statistics.
-Currently, users can only login using google sso.
+Currently, users can only log in using google sso.
 
 > More details to come for setting up sso
 
@@ -24,18 +24,18 @@ Currently, users can only login using google sso.
 2. Navigate to the "System" menu and select "Users".
 3. Click on the "Groups" tab.
 4. Click on the "Add New" button to create a new user group.
-5. Enter a name for the group such as "microguard-group" and click on the "OK" button.
+5. Enter a name for the group, such as "microguard-group" and click on the "OK" button.
 6. In the "Permissions" tab, select the desired permissions for the group. For MicroGuard, the user group should have read, write, and API access.
 7. Click on the "Apply" button to save the changes.
 8. Click on the "Users" tab.
 10. Enter the user's details, such as their name and password.
 
-> **warning:** Make sure to enter your local subnet into allowed address (unless you know what you are doing).
+> **warning:** Make sure to enter your local subnet into the allowed address (unless you know what you are doing).
 
 11. In the "Groups" tab, select the "microguard-group" group you just created.
 12. Click on the "Apply" button to save the changes.
 
-### Or using cmd (Hasn't been fully tested)
+### Or using cmd (Hasn't been thoroughly tested)
 
 Enter the following commands to create a new user group:
 
@@ -50,22 +50,22 @@ Enter the following command to create a new user:
 /user add name=username group=microguard-group password=userpassword
 ````
 
-> **warning:** Please see above warning as that also applies for cmd.
+> **warning:** Please see the above warning as that also applies to cmd.
 
 ## Creating a Road Warrior Wireguard interface for MicroGuard
 
 1. Log in to your MikroTik router using Winbox.
 2. Navigate to the "WireGuard" menu.
-3. Click on the "Add" button to create a new WireGuard interface.
-4. Enter a name for the interface such as "wireguard road warrior" and click on the "OK" button.
-5. Find the WireGuard server just created and take note of the public key as this will be required
+3. Click the "Add" button to create a new WireGuard interface.
+4. Enter a name for the interface, such as "wireguard road warrior" and click on the "OK" button.
+5. Find the WireGuard server just created and take note of the public key, as this will be required
 
 ## Installation on a server
 
 1. Install Docker on your server.
-2. Generate an app key using https://generate-random.org/laravel-key-generator and use that in following commands for APP_KEY
+2. Generate an app key using https://generate-random.org/laravel-key-generator and use that in the following commands for APP_KEY
 4. Start the MicroGuard server using the following command:
-> Please read the following before running as some action is required.
+> Please read the following before running, as some action is required.
 ````bash
 docker run -d
 --name microguard
