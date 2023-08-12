@@ -17,6 +17,7 @@ Currently, users can only login using google sso.
 - MikroTik router running RouterOS 7.0 or later
 - Docker (for running the MicroGuard server)
 
+# Setup
 ## Adding a User to MicroTik for MicroGuard
 ### Using Winbox
 1. Log in to your MikroTik router using Winbox.
