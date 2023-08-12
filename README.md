@@ -1,25 +1,39 @@
 # MicroGuard
 
-MicroGuard is a web-based tool for managing WireGuard VPN clients on MikroTik routers. With MicroGuard, 
-you can easily add new users, revoke access, and view connection statistics.
-Currently, users can only log in using google sso.
+MicroGuard is a robust web-based management tool designed to streamline the handling of WireGuard VPN clients on MikroTik routers. It simplifies user addition, access revocation, and provides a real-time view of connection statistics.
 
-> More details to come for setting up sso
+## Table of Contents
+- [Features](#features)
+- [Requirements](#requirements)
+- [Setup](#setup)
+    - [Adding a User to MikroTik for MicroGuard](#adding-a-user-to-mikrotik-for-microguard)
+    - [Creating a Road Warrior Wireguard Interface for MicroGuard](#creating-a-road-warrior-wireguard-interface-for-microguard)
+    - [Server Installation](#server-installation)
+- [Usage](#usage)
+- [Local Development and Testing with Docker Compose](#local-development-and-testing-with-docker-compose)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
-- Create and manage WireGuard clients on MikroTik routers
-- View real-time connection statistics and usage information
-- Revoke access for individual clients
+- **Client Management**: Streamline the creation and management of WireGuard clients on MikroTik routers.
+- **Real-time Monitoring**: Access real-time connection statistics and usage insights.
+- **Access Control**: Easily grant or revoke access for individual clients.
+- **Google SSO**: Secure sign-in using Google's Single Sign-On system.
+
+> **Note**: Comprehensive SSO setup details will be provided soon.
 
 ## Requirements
 
-- MikroTik router running RouterOS 7.0 or later
-- Docker (for running the MicroGuard server)
+- MikroTik router with RouterOS version 7.0 or newer.
+- Docker for running the MicroGuard server.
 
-# Setup
-## Adding a User to MicroTik for MicroGuard
-### Using Winbox
+## Setup
+
+### Adding a User to MikroTik for MicroGuard
+
+**Using Winbox**:
+
 1. Log in to your MikroTik router using Winbox.
 2. Navigate to the "System" menu and select "Users".
 3. Click on the "Groups" tab.
@@ -30,15 +44,15 @@ Currently, users can only log in using google sso.
 8. Click on the "Users" tab.
 10. Enter the user's details, such as their name and password.
 
-> **warning:** Make sure to enter your local subnet into the allowed address (unless you know what you are doing).
+> **Warning**: Always input the correct local subnet into the allowed address. If unsure about the configuration, seek expert advice.
+
 
 11. In the "Groups" tab, select the "microguard-group" group you just created.
 12. Click on the "Apply" button to save the changes.
 
-### Or using cmd (Hasn't been thoroughly tested)
+**Using Command Line**:
 
-Enter the following commands to create a new user group:
-
+To set up a new user group and user, input:
 >This will create a new user group named "microguard-group" with the necessary permissions for MicroGuard.
 ```sh
 /user group add name=microguard-group policy=local,read,write,test,api,winbox,password
@@ -50,22 +64,23 @@ Enter the following command to create a new user:
 /user add name=username group=microguard-group password=userpassword
 ````
 
-> **warning:** Please see the above warning as that also applies to cmd.
+> **Warning**: Ensure correct subnet configuration as highlighted in the Winbox method.
 
-## Creating a Road Warrior Wireguard interface for MicroGuard
+### Creating a Road Warrior WireGuard Interface for MicroGuard
 
-1. Log in to your MikroTik router using Winbox.
-2. Navigate to the "WireGuard" menu.
-3. Click the "Add" button to create a new WireGuard interface.
-4. Enter a name for the interface, such as "wireguard road warrior" and click on the "OK" button.
-5. Find the WireGuard server just created and take note of the public key, as this will be required
+1. Access your MikroTik router via Winbox.
+2. Go to "WireGuard" > "Add".
+3. Label the interface (e.g., "wireguard road warrior") and click Apply.
+4. Document the public key of the freshly created WireGuard server for subsequent use.
 
-## Installation on a server
+### Server Installation
 
-1. Install Docker on your server.
-2. Generate an app key using https://generate-random.org/laravel-key-generator and use that in the following commands for APP_KEY
-4. Start the MicroGuard server using the following command:
-> Please read the following before running, as some action is required.
+1. Ensure Docker is up and running on your server.
+2. Generate an app key via [this generator](https://generate-random.org/laravel-key-generator) for use in upcoming commands.
+3. Deploy MicroGuard using:
+
+**Docker Command**
+
 ````bash
 docker run -d
 --name microguard
@@ -84,7 +99,8 @@ docker run -d
 -e APP_URL='https://my.public.address'
 ghcr.io/xterm-inator/microguard:master
 ````
-Or as a docker-compose.yml file
+
+**Docker Compose**:
 ```yml
 version: '3.8'
 services:
@@ -112,15 +128,54 @@ services:
 ```
 
 ## Usage
+1. Open MicroGuard at `http://your-server-ip`.
+2. Click on "Users" > "Add User".
 
-1. Access the MicroGuard web interface by navigating to `http://your-server-ip` in your web browser.
-2. Click on the "Users" tab
-3. Click Add User
+## Local Development and Testing with Docker Compose
+
+To facilitate local development and testing, we've incorporated Docker Compose. This allows developers to run the entire MicroGuard stack locally without complex setups.
+
+### Prerequisites:
+
+- Docker
+- Docker Compose
+- Git
+
+### Steps:
+
+1. Clone the Repository:
+   Use Git to clone the MicroGuard repository to your local machine:
+   ```bash
+   git clone https://github.com/your-repo-link/microguard.git
+   # Navigate into the repository directory:
+   cd microguard
+   ```
+   
+2. Set Up Environment Variables:
+   Before starting the services using Docker Compose, you may need to configure some environment variables. Copy the sample environment file and adjust the settings as necessary:
+   ```shell
+   cp api/.env.example .env
+   ```
+   Edit the .env file with appropriate values. Make sure to generate and set values for necessary keys, especially those related to Google SSO, and MikroTik configurations.
+
+3. Run with Docker Compose:
+   Start the MicroGuard stack using Docker Compose:
+   ```shell
+   docker compose up
+   ```
+   This will build and start all necessary containers. Once done, the MicroGuard interface should be accessible at http://localhost:8000 or another port if you've adjusted the configuration.
+
+4. Shutdown and Cleanup:
+   When you're done with local development/testing, you can stop the Docker Compose services:
+
+   ```shell
+   docker compose down
+   ```
+
+This setup should provide an isolated environment for development and testing without affecting any production data or configurations.
 
 ## Contributing
-
-If you would like to contribute to the development of MicroGuard, you can submit a pull request on GitHub. We welcome bug reports, feature requests, and code contributions from the community.
+Contribute to MicroGuard by submitting a pull request or issue on GitHub. We welcome bug reports, feature suggestions, and code enhancements from the community.
 
 ## License
-
-MicroGuard is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details.
+MicroGuard is licensed under the GNU General Public License v3.0. Details are in the [LICENSE.md](LICENSE.md) file.
