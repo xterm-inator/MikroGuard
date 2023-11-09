@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use App\Support\Enums\Auth;
 
 function generate_last_handshake_date(?string $string): ?Carbon
 {
@@ -28,4 +29,13 @@ function generate_last_handshake_date(?string $string): ?Carbon
     }
 
     return $currentDate;
+}
+
+function auth_type(): Auth
+{
+    if (config('services.google.client_id')) {
+        return Auth::Google;
+    }
+
+    return Auth::Form;
 }
