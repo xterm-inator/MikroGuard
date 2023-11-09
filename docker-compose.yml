@@ -1,15 +1,5 @@
 version: '2'
 services:
-#    api:
-#        build:
-#            context: ./api/
-#            dockerfile: web.docker
-#        ports:
-#            - "8000:80"
-#        links:
-#            - fpm
-#        volumes:
-#            - ./api/:/var/www
     api:
         build:
             context: ./api/

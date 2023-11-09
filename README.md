@@ -21,8 +21,6 @@ MicroGuard is a robust web-based management tool designed to streamline the hand
 - **Access Control**: Easily grant or revoke access for individual clients.
 - **Google SSO**: Secure sign-in using Google's Single Sign-On system.
 
-> **Note**: Comprehensive SSO setup details will be provided soon.
-
 ## Requirements
 
 - MikroTik router with RouterOS version 7.0 or newer.
@@ -97,7 +95,7 @@ docker run -d
 -e ROUTEROS_WIREGUARD_INTERFACE='wireguard' #wireguard interface name 
 -e ROUTEROS_WIREGUARD_ENDPOINT='192.168.0.1:13231' #ip:port for wireguard interface
 -e APP_URL='https://my.public.address'
-ghcr.io/xterm-inator/microguard:master
+ghcr.io/xterm-inator/microguard:latest
 ````
 
 **Docker Compose**:
@@ -105,7 +103,7 @@ ghcr.io/xterm-inator/microguard:master
 version: '3.8'
 services:
   microguard:
-    image: ghcr.io/xterm-inator/microguard:master
+    image: ghcr.io/xterm-inator/microguard:latest
     container_name: microguard
     restart: always
     ports:
@@ -146,33 +144,51 @@ To facilitate local development and testing, we've incorporated Docker Compose. 
 1. Clone the Repository:
    Use Git to clone the MicroGuard repository to your local machine:
    ```bash
-   git clone https://github.com/your-repo-link/microguard.git
+   git clone git@github.com:xterm-inator/microguard.git
    # Navigate into the repository directory:
    cd microguard
    ```
    
 2. Set Up Environment Variables:
    Before starting the services using Docker Compose, you may need to configure some environment variables. Copy the sample environment file and adjust the settings as necessary:
-   ```shell
+   ```bash
    cp api/.env.example .env
    ```
-   Edit the .env file with appropriate values. Make sure to generate and set values for necessary keys, especially those related to Google SSO, and MikroTik configurations.
+   Edit the .env file with appropriate values. Make sure to generate and set values for necessary keys.
 
-3. Run with Docker Compose:
+3. Build Containers:
+   ```bash
+   docker compose build --parallel
+   ```
+
+4. Install Dependencies:
+   Using docker run there are some dependencies that need to be setup:
+   ```bash
+   docker compose run api composer install
+   docker compose run api npm i
+   docker compose run api php artisan key:generate
+   docker compose run api php artisan migrate
+   docker compose run vue npm i
+   ```
+   
+5. Create an Initial User:
+   ```bash
+   docker compose run api php artisan app:create-user admin@email.com admin
+   ```
+
+6. Run with Docker Compose:
    Start the MicroGuard stack using Docker Compose:
-   ```shell
+   ```bash
    docker compose up
    ```
-   This will build and start all necessary containers. Once done, the MicroGuard interface should be accessible at http://localhost:8000 or another port if you've adjusted the configuration.
+   This will build and start all necessary containers. Once done, the MicroGuard interface should be accessible at http://localhost:3000.
 
-4. Shutdown and Cleanup:
+7. Shutdown and Cleanup:
    When you're done with local development/testing, you can stop the Docker Compose services:
 
-   ```shell
+   ```bash
    docker compose down
    ```
-
-This setup should provide an isolated environment for development and testing without affecting any production data or configurations.
 
 ## Contributing
 Contribute to MicroGuard by submitting a pull request or issue on GitHub. We welcome bug reports, feature suggestions, and code enhancements from the community.
