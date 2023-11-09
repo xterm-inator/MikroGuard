@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         $this->authorize('delete', $user);
 
-        $user->config()->delete();
+        $user->config?->delete();
         $user->oauthProviders()->delete();
 
         $user->delete();
