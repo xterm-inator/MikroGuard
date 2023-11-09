@@ -22,6 +22,8 @@ RUN composer install \
 FROM phpswoole/swoole:5.0-php8.2-alpine as base
 LABEL authors="David Smith <david@xterm.me>"
 
+RUN apk add --no-cache linux-headers
+
 RUN docker-php-ext-install bcmath && \
     docker-php-ext-install sockets
 
