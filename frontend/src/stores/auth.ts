@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { http } from '@/utils'
-import type { User } from '@/models/user.model'
-import { DefaultUser } from '@/models/user.model'
+import type { User } from '@/stores/user'
+import { DefaultUser } from '@/stores/user'
 import { clone } from 'lodash'
 
 export const useAuthStore = defineStore({
