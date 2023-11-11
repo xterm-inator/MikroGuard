@@ -7,7 +7,7 @@ import { clone } from 'lodash'
 
 export enum AuthType {
   Form = 'form',
-  Google = 'Google'
+  Google = 'google'
 }
 
 export interface AppConfig {
