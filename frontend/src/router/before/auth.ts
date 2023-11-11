@@ -1,8 +1,8 @@
-import { useAuthStore } from '@/stores/auth'
+import { useAppStore } from '@/stores/app'
 import type { RouteLocationNormalized } from "vue-router";
 
 export default async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: any) => {
-  const authStore = useAuthStore()
+  const authStore = useAppStore()
 
   const requiresAuth = to.matched.some((route) => route.meta.requiresAuth === true)
   const roles: any = to.meta.roles ?? []

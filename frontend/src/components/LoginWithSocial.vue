@@ -6,10 +6,10 @@
 <script setup lang="ts">
 import { BrandGoogleIcon } from 'vue-tabler-icons'
 import { defineEmits, onBeforeUnmount, onMounted } from 'vue'
-import { useAuthStore } from '@/stores/auth'
+import { useAppStore } from '@/stores/app'
 
 const emit = defineEmits(['authenticated'])
-const store = useAuthStore()
+const store = useAppStore()
 
 onMounted(() => {
   window.addEventListener('message', handleMessage, false)

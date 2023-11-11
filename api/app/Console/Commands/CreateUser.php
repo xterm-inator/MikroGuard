@@ -9,7 +9,9 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Rules\RequiredIf;
+use Illuminate\Validation\Rules\Unique;
 use Illuminate\Validation\ValidationException;
+use function Laravel\Prompts\password;
 
 class CreateUser extends Command
 {
@@ -38,11 +40,11 @@ class CreateUser extends Command
         $password = null;
 
         if (auth_type() == Auth::Form) {
-            $password = $this->secret('User password');
+            $password = password('User password', required: true);
         }
 
         $validator = Validator::make([...$this->arguments(), 'password' => $password], [
-            'email' => ['email'],
+            'email' => ['email', new Unique('users', 'email')],
             'role' => [new Enum(Role::class)],
             'password' => ['nullable', new RequiredIf(auth_type() == Auth::Form), 'min:8'],
         ]);

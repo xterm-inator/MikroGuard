@@ -1,6 +1,7 @@
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios, { Axios } from 'axios'
 import { useRoute, useRouter } from 'vue-router'
+import { useAppStore } from '@/stores/app'
 
 /**
  * Generate URL to API.
@@ -22,8 +23,6 @@ const http: Axios = axios.create({
   withCredentials: true
 })
 
-let csrfSet = false
-
 http.defaults.headers.post['Content-Type'] = 'application/json'
 http.defaults.headers.put['Content-Type'] = 'application/json'
 // http.defaults.headers.Accept = 'application/json'
@@ -33,6 +32,8 @@ http.interceptors.request.use(async (request: AxiosRequestConfig) => {
     return
   }
 
+  const appStore = useAppStore()
+
   if (request.data === undefined && ['post', 'put'].includes(request.method?.toLowerCase() ?? '')) {
     request.data = {}
   }
@@ -40,10 +41,10 @@ http.interceptors.request.use(async (request: AxiosRequestConfig) => {
   // For POST, PUT, and DELETE requests make a CSRF preflight if we have not already
   // made one for this page load.
   if (
-    ['post', 'put', 'delete'].includes(request.method?.toLowerCase() ?? '') && !csrfSet
+    ['post', 'put', 'delete'].includes(request.method?.toLowerCase() ?? '') && !appStore.csrf
   ) {
     await http.get('/sanctum/csrf-cookie')
-    csrfSet = true
+    appStore.csrf = true
   }
 
   return request
