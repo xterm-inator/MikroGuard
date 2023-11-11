@@ -11,6 +11,18 @@
         <role-select v-model:role="role"></role-select>
         <div class="invalid-feedback" v-if="errors.role">{{ errors.role }}</div>
       </div>
+      <template v-if="app.config.auth_type === AuthType.Form">
+        <div class="mb-3">
+          <label class="form-label required">Password</label>
+          <input type="password" class="form-control" name="password" v-model="password" placeholder="password" :class="{ 'is-invalid': errors.password }">
+          <div class="invalid-feedback" v-if="errors.password">{{ errors.password }}</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label required">Password Confirmation</label>
+          <input type="password" class="form-control" name="password" v-model="passwordConfirmation" placeholder="password" :class="{ 'is-invalid': errors.password_confirmation }">
+          <div class="invalid-feedback" v-if="errors.password_confirmation">{{ errors.password_confirmation }}</div>
+        </div>
+      </template>
     </form>
     <template #footer="{ close }">
       <button class="btn btn-link link-secondary" @click="close">Cancel</button>
@@ -27,14 +39,18 @@ import { toFormValidator } from '@vee-validate/zod'
 import * as zod from 'zod'
 import { useUserStore } from '@/stores/user'
 import RoleSelect from '@/components/forms/RoleSelect.vue'
+import { AuthType, useAppStore } from '@/stores/app'
 
 const modal = ref<typeof Modal>()
 const store = useUserStore()
+const app = useAppStore()
 
 const validationSchema = toFormValidator(
     zod.object({
       email: zod.string().min(1).email(),
-      role: zod.string()
+      role: zod.string(),
+      password: zod.string().nullable(),
+      password_confirmation: zod.string().nullable()
     })
 )
 
@@ -44,6 +60,9 @@ const { handleSubmit, errors, values, handleReset } = useForm({
 
 const { value: email, resetField: resetEmail } = useField<string>('email')
 const { value: role, resetField: resetRole } = useField<string>('role')
+const { value: password, resetField: resetPassword } = useField<string|null>('password')
+const { value: passwordConfirmation, resetField: resetPasswordConfirmation } = useField<string|null>('password_confirmation')
+
 
 resetRole({
   value: store.user.role
@@ -53,9 +72,19 @@ resetEmail({
   value: store.user.email
 })
 
+resetPassword({
+  value: store.user.password
+})
+
+resetPasswordConfirmation({
+  value: store.user.password_confirmation
+})
+
 const handleCreate = handleSubmit(async (values, actions) => {
   store.user.email = values.email
   store.user.role = values.role
+  store.user.password = values.password
+  store.user.password_confirmation = values.password_confirmation
   try {
     await store.storeUser()
     if (modal && modal.value) {

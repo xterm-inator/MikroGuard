@@ -2,12 +2,12 @@
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/stores/auth'
+import { useAppStore } from '@/stores/app'
 import { onMounted } from 'vue'
 
 const router = useRouter()
 
-const store = useAuthStore()
+const store = useAppStore()
 
 onMounted(async () => {
   await store.logout()

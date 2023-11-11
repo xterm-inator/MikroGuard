@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import registerBeforeHooks from './before'
-import { useAuthStore } from '@/stores/auth'
+import { useAppStore } from '@/stores/app'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,7 +24,7 @@ const router = createRouter({
       component: () => import('../views/Connection.vue'),
       props () {
         return {
-          id: useAuthStore().user.id
+          id: useAppStore().user.id
         }
       }
     },

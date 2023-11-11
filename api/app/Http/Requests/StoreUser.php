@@ -3,10 +3,12 @@
 namespace App\Http\Requests;
 
 use App\Models\User;
+use App\Support\Enums\Auth;
 use App\Support\Enums\Role;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class StoreUser extends FormRequest
 {
@@ -38,6 +40,11 @@ class StoreUser extends FormRequest
                 'bail',
                 'required',
                 new Enum(Role::class),
+            ],
+            'password' => [
+                'nullable',
+                new RequiredIf(auth_type() == Auth::Form),
+                'confirmed'
             ]
         ];
     }
