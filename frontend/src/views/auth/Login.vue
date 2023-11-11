@@ -2,11 +2,11 @@
   <div class="card card-md">
     <div class="card-body">
       <h2 class="card-title text-center mb-4">Login to your account</h2>
+      <div v-if="tooManyAttemptsError" class="mb-3 alert alert-danger">{{ tooManyAttemptsError }}.</div>
       <div class="text-center d-grid mt-3" v-if="app.config.auth_type == AuthType.Google">
         <login-with-social @authenticated="handleCompletedLogin"></login-with-social>
       </div>
-      <div v-if="tooManyAttemptsError" class="mb-3 alert alert-danger">{{ tooManyAttemptsError }}.</div>
-      <form class="d-grid mt-3">
+      <form v-else class="d-grid mt-3">
         <div class="mb-3">
           <label class="form-label required">Email</label>
           <input type="text" class="form-control" name="email" v-model="email" placeholder="User Email" :class="{ 'is-invalid': errors.email }">
