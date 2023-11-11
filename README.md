@@ -125,9 +125,11 @@ services:
 
 ```
 
-## Usage
-1. Open MicroGuard at `http://your-server-ip`.
-2. Click on "Users" > "Add User".
+## Initial User
+   To create the initial user run: (replace: admin@xterm.me with your email)
+   ```bash
+   docker compose exec api php artisan app:create-user admin@xterm.me admin 
+   ```
 
 ## Local Development and Testing with Docker Compose
 
