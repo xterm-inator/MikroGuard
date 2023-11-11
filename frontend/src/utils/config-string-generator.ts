@@ -1,4 +1,4 @@
-import type { Config } from '@/models/config.model'
+import type { Config } from '@/stores/config'
 
 const generateString = (config: Config) => {
   return`[Interface]

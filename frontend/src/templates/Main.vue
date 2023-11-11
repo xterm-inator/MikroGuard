@@ -65,10 +65,10 @@
 import { RouterView } from 'vue-router'
 import { UsersIcon, NetworkIcon, UserIcon } from 'vue-tabler-icons'
 import NavItem from '@/components/NavItem.vue'
-import { useAuthStore } from '@/stores/auth'
+import { useAppStore } from '@/stores/app'
 import { computed } from 'vue'
 
-const store = useAuthStore()
+const store = useAppStore()
 
 const user = computed(() => {
   return store.user

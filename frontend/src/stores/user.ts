@@ -1,9 +1,27 @@
 import { defineStore } from 'pinia'
 import { http } from '@/utils'
 import { clone } from 'lodash'
-import { DefaultUser } from '@/models/user.model'
-import type { User } from '@/models/user.model'
-import type { AxiosResponse } from "axios";
+import type { AxiosResponse } from 'axios'
+
+export interface User {
+  id?: string
+  role: string
+  email: string
+  data_up?: number
+  data_down?: number
+  last_handshake?: Date,
+  rx?: number,
+  tx?: number,
+  password?: string|null,
+  password_confirmation?: string|null,
+}
+
+export const DefaultUser: User = {
+  email: '',
+  role: 'user',
+  password: null,
+  password_confirmation: null,
+}
 
 export const useUserStore = defineStore({
   id: 'user',

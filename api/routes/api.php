@@ -14,6 +14,9 @@ use App\Http\Controllers;
 |
 */
 
+Route::get('app/config', Controllers\SystemConfigController::class);
+Route::post('auth', Controllers\Auth\LoginController::class);
+
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::delete('auth', Controllers\Auth\LogoutController::class);
     Route::get('me', Controllers\Auth\UserController::class);

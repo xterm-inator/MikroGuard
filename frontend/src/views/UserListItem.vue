@@ -19,8 +19,8 @@
 </template>
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
+import type { User } from '@/stores/user'
 import swal from 'sweetalert'
-import type { User } from '@/models/user.model'
 import prettyBytes from 'pretty-bytes'
 import { computed } from 'vue'
 import dayjs from 'dayjs'
