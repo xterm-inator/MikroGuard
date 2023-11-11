@@ -77,6 +77,8 @@ Enter the following command to create a new user:
 2. Generate an app key via [this generator](https://generate-random.org/laravel-key-generator) for use in upcoming commands.
 3. Deploy MicroGuard using:
 
+> If you don't want to use google sso remove the google environment variables from the following commands
+
 **Docker Command**
 
 ````bash
