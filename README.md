@@ -156,7 +156,7 @@ To facilitate local development and testing, we've incorporated Docker Compose. 
 2. Set Up Environment Variables:
    Before starting the services using Docker Compose, you may need to configure some environment variables. Copy the sample environment file and adjust the settings as necessary:
    ```bash
-   cp api/.env.example .env
+   cp api/.env.example api/.env
    ```
    Edit the .env file with appropriate values. Make sure to generate and set values for necessary keys.
 
