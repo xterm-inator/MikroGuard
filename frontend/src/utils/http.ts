@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig, AxiosResponse } from 'axios'
+import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import axios, { Axios } from 'axios'
 import { useRoute, useRouter } from 'vue-router'
 import { useAppStore } from '@/stores/app'
@@ -20,18 +20,14 @@ const apiUrl = (path?: string) => {
 
 const http: Axios = axios.create({
   baseURL: apiUrl(),
-  withCredentials: true
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  },
 })
 
-http.defaults.headers.post['Content-Type'] = 'application/json'
-http.defaults.headers.put['Content-Type'] = 'application/json'
-// http.defaults.headers.Accept = 'application/json'
-
-http.interceptors.request.use(async (request: AxiosRequestConfig) => {
-  if (request === undefined) {
-    return
-  }
-
+http.interceptors.request.use(async (request: InternalAxiosRequestConfig) => {
   const appStore = useAppStore()
 
   if (request.data === undefined && ['post', 'put'].includes(request.method?.toLowerCase() ?? '')) {
