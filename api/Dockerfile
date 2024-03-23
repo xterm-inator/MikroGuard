@@ -1,4 +1,4 @@
-FROM phpswoole/swoole:5.0-php8.2-alpine
+FROM phpswoole/swoole:5.1-php8.3-alpine
 
 RUN apk add --no-cache \
     linux-headers \
