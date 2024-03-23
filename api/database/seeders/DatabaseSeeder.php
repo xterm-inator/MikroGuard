@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
          ]);
 
          User::factory()->create([
-             'email' => 'usern@xterm.me',
+             'email' => 'user@xterm.me',
              'password' => 'secret',
              'role' => Role::User,
          ]);
