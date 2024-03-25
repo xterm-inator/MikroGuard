@@ -19,7 +19,7 @@ RUN composer install \
     --prefer-dist
 
 #Image
-FROM phpswoole/swoole:5.0-php8.2-alpine as base
+FROM phpswoole/swoole:5.1-php8.3-alpine as base
 LABEL authors="David Smith <david@xterm.me>"
 
 RUN apk add --no-cache linux-headers
