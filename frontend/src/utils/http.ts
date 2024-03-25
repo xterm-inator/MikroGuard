@@ -21,6 +21,7 @@ const apiUrl = (path?: string) => {
 const http: Axios = axios.create({
   baseURL: apiUrl(),
   withCredentials: true,
+  withXSRFToken: true,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
