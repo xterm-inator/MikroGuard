@@ -84,7 +84,7 @@ Enter the following command to create a new user:
 ````bash
 docker run -d
 --name microguard
--p 80:80
+-p 8000:8000
 -v /path/to/data:/opt/app/storage
 -e APP_KEY=
 -e GOOGLE_CLIENT_ID=
@@ -109,7 +109,7 @@ services:
     container_name: microguard
     restart: always
     ports:
-      - 80:80
+      - 8000:8000
     volumes:
       - /path/to/data:/opt/app/storage
     environment:
@@ -130,7 +130,7 @@ services:
 ## Initial User
    To create the initial user run: (replace: admin@xterm.me with your email)
    ```bash
-   docker compose exec api php artisan app:create-user admin@xterm.me admin 
+   docker compose exec microguard php artisan app:create-user admin@xterm.me admin 
    ```
 
 ## Local Development and Testing with Docker Compose
