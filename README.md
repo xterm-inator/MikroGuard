@@ -200,6 +200,12 @@ To facilitate local development and testing, we've incorporated Docker Compose. 
    docker compose down
    ```
 
+## Troubleshooting
+### Error: Session store not set on request
+This error is normally caused when the browser is accessing the server from an address that is different to the APP_URL set in the environment variables.
+
+Try setting this to the address you are using, can be localhost, an IP address or a domain eg. http://localhost:8000
+
 ## Contributing
 Contribute to MicroGuard by submitting a pull request or issue on GitHub. We welcome bug reports, feature suggestions, and code enhancements from the community.
 
