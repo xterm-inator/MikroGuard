@@ -30,6 +30,7 @@ jobs:
       with:
         images: |
           ghcr.io/xterm-inator/microguard
+          ghcr.io/xterm-inator/mikroguard
         tags: |
           type=ref,event=branch
           type=ref,event=pr

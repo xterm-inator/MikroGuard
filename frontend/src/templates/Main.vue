@@ -6,7 +6,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-          MicroGuard
+          MikroGuard
         </a>
 
         <div class="navbar-nav flex-row order-md-last">
