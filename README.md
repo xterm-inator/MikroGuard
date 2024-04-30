@@ -31,6 +31,14 @@ MikroGuard is a robust web-based management tool designed to streamline the hand
 - MikroTik router with RouterOS version 7.0 or newer.
 - Docker for running the MikroGuard server.
 
+## Self Sanity Check
+If you would like to check what this program is going to run on your router before allowing access, 
+then check files 'api/app/RouterOS/WireGuard.php' and 'api/app/RouterOS/IPAdress.php'. 
+
+These files contain all access to the router so you can see the commands ran.
+
+Also no user input is ever passed to the router, only values you as the admin through environemt variables have entered.
+
 ## Setup
 
 ### Adding a User to MikroTik for MikroGuard
