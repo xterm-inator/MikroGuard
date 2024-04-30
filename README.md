@@ -1,7 +1,7 @@
 # MikroGuard
+### **Recently renamed from microguard. For now the microguard ghcr image will continue to be updated inline with the new mikroguard ghcr for backwards compatibility, But would recommend switching to the new image. The only difference is the name and the new mikroguard image won't have versions before v1.1.4
 
 MikroGuard is a robust web-based management tool designed to streamline the handling of WireGuard VPN clients on MikroTik routers. It simplifies user addition, access revocation, and provides a real-time view of connection statistics.
-
 
 | Login | Users | Connection |
 | --- | --- | --- |
@@ -102,7 +102,7 @@ docker run -d
 -e ROUTEROS_WIREGUARD_INTERFACE='wireguard' #wireguard interface name 
 -e ROUTEROS_WIREGUARD_ENDPOINT='192.168.0.1:13231' #ip:port for wireguard interface
 -e APP_URL='https://my.public.address'
-ghcr.io/xterm-inator/MikroGuard:latest
+ghcr.io/xterm-inator/mikroguard:latest
 ````
 
 **Docker Compose**:
@@ -110,7 +110,7 @@ ghcr.io/xterm-inator/MikroGuard:latest
 version: '3.8'
 services:
   MikroGuard:
-    image: ghcr.io/xterm-inator/MikroGuard:latest
+    image: ghcr.io/xterm-inator/mikroguard:latest
     container_name: MikroGuard
     restart: always
     ports:

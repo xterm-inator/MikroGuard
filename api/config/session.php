@@ -130,7 +130,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'microguard'), '_').'_session'
+        Str::slug(env('APP_NAME', 'MikroGuard'), '_').'_session'
     ),
 
     /*
