@@ -16,6 +16,7 @@ MikroGuard is a robust web-based management tool designed to streamline the hand
     - [Creating a Road Warrior Wireguard Interface for MikroGuard](#creating-a-road-warrior-wireguard-interface-for-mikroguard)
     - [Server Installation](#server-installation)
 - [Local Development and Testing with Docker Compose](#local-development-and-testing-with-docker-compose)
+- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -32,7 +33,7 @@ MikroGuard is a robust web-based management tool designed to streamline the hand
 - Docker for running the MikroGuard server.
 
 ## Self Sanity Check
-If you would like to check what this program will run on your router before allowing access, check files 'api/app/RouterOS/WireGuard.php' and 'api/app/RouterOS/IPAdress.php'.
+If you would like to check what this program will run on your router before allowing access, check files 'api/app/RouterOS/WireGuard.php' and 'api/app/RouterOS/IPAddress.php'.
 
 These files contain all access to the router so you can see the commands run.
 
