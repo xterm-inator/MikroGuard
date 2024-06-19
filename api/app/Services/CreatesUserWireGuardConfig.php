@@ -43,10 +43,25 @@ class CreatesUserWireGuardConfig
     private function getNextAvailableIP(): IP
     {
         $range = IPAddress::getWireGuardAddresses();
-        $usedIPs = Config::pluck('address');
+        $usedIPs = IPAddress::getWireGuardUsedAddresses();
+
+        $ips = [];
+
+        foreach ($usedIPs as $ipRange) {
+            foreach ($ipRange as $ip) {
+                $ips[] = $ip;
+            }
+        }
 
         foreach ($range as $ip) {
-            if (!$usedIPs->contains((string)$ip)) {
+            $notFound = true;
+            foreach ($ips as $existingIP) {
+                if (!$notFound) {
+                    continue;
+                }
+                $notFound = !((string)$ip == (string)$existingIP);
+            }
+            if ($notFound) {
                 return $ip;
             }
         }
