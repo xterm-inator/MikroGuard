@@ -2,7 +2,7 @@
 
 namespace App\RouterOS;
 
-use IPTools\IP;
+use IPTools\Exception\IpException;
 use IPTools\Network;
 use IPTools\Range;
 use RouterOS\Query;
@@ -42,7 +42,11 @@ class IPAddress extends RouterOS
         $ips = [];
 
         foreach ($response as $peer) {
-            $ips[] = Range::parse($peer['allowed-address']);
+            try {
+                $ips[] = Range::parse($peer['allowed-address']);
+            } catch (IpException $exception) {
+                logger(sprintf('Invalid IP - %s, %s', $peer['allowed-address'], $exception->getMessage()));
+            }
         }
 
         return $ips;
