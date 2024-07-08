@@ -44,7 +44,6 @@ class CreatesUserWireGuardConfig
     {
         $range = IPAddress::getWireGuardAddresses();
         $usedIPs = IPAddress::getWireGuardUsedAddresses();
-
         $ips = [];
 
         foreach ($usedIPs as $ipRange) {
