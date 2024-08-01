@@ -8,9 +8,9 @@
       </div>
       <form v-else class="d-grid mt-3">
         <div class="mb-3">
-          <label class="form-label required">Email</label>
-          <input type="text" class="form-control" name="email" v-model="email" placeholder="User Email" :class="{ 'is-invalid': errors.email }">
-          <div class="invalid-feedback" v-if="errors.email">{{ errors.email }}</div>
+          <label class="form-label required">Username/Email</label>
+          <input type="text" class="form-control" name="username" v-model="username" placeholder="Username" :class="{ 'is-invalid': errors.username }">
+          <div class="invalid-feedback" v-if="errors.username">{{ errors.username }}</div>
         </div>
         <div class="mb-4">
           <label class="form-label required">Password</label>
@@ -41,7 +41,7 @@ const store = useAppStore()
 
 const validationSchema = toFormValidator(
     zod.object({
-      email: zod.string().min(1).email(),
+      username: zod.string().min(1),
       password: zod.string(),
     })
 )
@@ -50,11 +50,11 @@ const { handleSubmit, errors, values } = useForm({
   validationSchema,
 });
 
-const { value: email, resetField: resetEmail } = useField<string>('email')
+const { value: username, resetField: resetUsername } = useField<string>('username')
 const { value: password, resetField: resetPassword } = useField<string|null>('password')
 
-resetEmail({
-  value: store.user.email
+resetUsername({
+  value: store.user.username
 })
 
 resetPassword({
@@ -64,7 +64,7 @@ resetPassword({
 const handleLogin = handleSubmit(async (values, actions) => {
 
   try {
-    await store.login(values.email, values.password)
+    await store.login(values.username, values.password)
 
     await store.authorize()
 
@@ -73,7 +73,7 @@ const handleLogin = handleSubmit(async (values, actions) => {
     if (e.response.status === 422) {
       actions.setErrors(e.response.data.errors)
     } else if (e.response.status === 429) {
-      tooManyAttemptsError.value = e.response.data.errors.email[0]
+      tooManyAttemptsError.value = e.response.data.errors.username[0]
 
       return
     }
