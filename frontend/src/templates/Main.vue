@@ -15,7 +15,7 @@
                aria-label="Open user menu">
               <span class="avatar avatar-sm"><user-icon></user-icon></span>
               <div class="d-none d-xl-block ps-2">
-                <div>{{ user.email }}</div>
+                <div>{{ user.username }}</div>
                 <div class="mt-1 small text-muted text-capitalize">{{ user.role }}</div>
               </div>
             </a>

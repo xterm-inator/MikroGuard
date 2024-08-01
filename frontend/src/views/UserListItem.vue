@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>
-      <router-link :to="{ name: 'users.connection', params: { id: props.user.id } }">{{ props.user.email }}</router-link>
+      <router-link :to="{ name: 'users.connection', params: { id: props.user.id } }">{{ props.user.username }}</router-link>
     </td>
     <td>
       {{ prettyBytes(props.user.rx ?? 0) }}

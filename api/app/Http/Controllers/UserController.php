@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         $this->authorize('index', User::class);
 
-        $users = User::orderBy('email')
+        $users = User::orderBy('username')
             ->with('config')
             ->get();
 

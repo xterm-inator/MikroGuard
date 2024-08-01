@@ -64,7 +64,7 @@ class OAuthController extends Controller
 
         $email = $sUser->getEmail();
 
-        $user = User::where('email', $email)->first();
+        $user = User::where('username', $email)->first();
 
         abort_if(!$user, 404, 'User not found');
 

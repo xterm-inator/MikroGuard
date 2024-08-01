@@ -27,10 +27,10 @@ class ListUsers extends Command
     public function handle(): void
     {
         $this->table(
-            ['Email', 'Public Key'],
+            ['Username', 'Public Key'],
             User::with('config')->get()->map(fn (User $user) =>
                 [
-                    'email' => $user->email,
+                    'username' => $user->username,
                     'key' => $user->config?->peer_public_key
                 ]
             )

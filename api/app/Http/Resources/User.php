@@ -18,7 +18,7 @@ class User extends JsonResource
     {
         return [
             'id' => $this->uuid,
-            'email' => $this->email,
+            'username' => $this->username,
             'role' => $this->when($request->user()->role === Role::Admin, $this->role),
             $this->mergeWhen($this->peer, fn () =>
                 [

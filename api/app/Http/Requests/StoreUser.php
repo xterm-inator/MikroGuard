@@ -30,11 +30,10 @@ class StoreUser extends FormRequest
     public function rules()
     {
         return [
-            'email' => [
+            'username' => [
                 'bail',
                 'required',
-                'email',
-                Rule::unique('users', 'email'),
+                Rule::unique('users', 'username'),
             ],
             'role' => [
                 'bail',

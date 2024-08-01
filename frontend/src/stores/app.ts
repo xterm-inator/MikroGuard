@@ -38,8 +38,8 @@ export const useAppStore = defineStore({
       return response.data.url
     },
 
-    login (email: string, password: string): Promise<void> {
-      return http.post('auth', { email, password })
+    login (username: string, password: string): Promise<void> {
+      return http.post('auth', { username, password })
     },
 
     async authorize(): Promise<void> {

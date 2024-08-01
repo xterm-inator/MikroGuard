@@ -45,7 +45,7 @@ class LoginController extends Controller
             $this->sendLockoutResponse($request);
         }
 
-        if ($auth->attempt($request->only('email', 'password'))) {
+        if ($auth->attempt($request->only('username', 'password'))) {
             $request->session()->regenerate();
 
             $this->clearLoginAttempts($request);
@@ -55,6 +55,6 @@ class LoginController extends Controller
 
         $this->incrementLoginAttempts($request);
 
-        throw ValidationException::withMessages(['email' => [Lang::get('auth.failed')]])->status(422);
+        throw ValidationException::withMessages(['username' => [Lang::get('auth.failed')]])->status(422);
     }
 }

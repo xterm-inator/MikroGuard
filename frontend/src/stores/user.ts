@@ -6,7 +6,7 @@ import type { AxiosResponse } from 'axios'
 export interface User {
   id?: string
   role: string
-  email: string
+  username: string
   data_up?: number
   data_down?: number
   last_handshake?: Date,
@@ -17,7 +17,7 @@ export interface User {
 }
 
 export const DefaultUser: User = {
-  email: '',
+  username: '',
   role: 'user',
   password: null,
   password_confirmation: null,

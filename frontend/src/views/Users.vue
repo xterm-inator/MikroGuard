@@ -15,7 +15,7 @@
             <table class="table table-hover table-outline table-vcenter table-mobile-md card-table m-0">
               <thead>
                 <tr>
-                  <th>Email</th>
+                  <th>Username</th>
                   <th>Activity</th>
                   <th>Handshake</th>
                   <th width="50"></th>

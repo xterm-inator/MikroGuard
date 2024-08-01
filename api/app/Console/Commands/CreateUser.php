@@ -20,7 +20,7 @@ class CreateUser extends Command
      *
      * @var string
      */
-    protected $signature = 'app:create-user {email} {role=user : Role of the user (user|admin)}';
+    protected $signature = 'app:create-user {username} {role=user : Role of the user (user|admin)}';
 
     /**
      * The console command description.
@@ -44,7 +44,7 @@ class CreateUser extends Command
         }
 
         $validator = Validator::make([...$this->arguments(), 'password' => $password], [
-            'email' => ['email', new Unique('users', 'email')],
+            'username' => ['string', 'max:255', new Unique('users', 'username')],
             'role' => [new Enum(Role::class)],
             'password' => ['nullable', new RequiredIf(auth_type() == Auth::Form), 'min:8'],
         ]);
