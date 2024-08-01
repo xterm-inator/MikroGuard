@@ -89,7 +89,8 @@ class WireGuard extends RouterOS
         $query->equal('allowed-address',  $peer->allowedAddress)
             ->equal('interface', $peer->interface)
             ->equal('public-key', $peer->publicKey)
-            ->equal('preshared-key', $peer->presharedKey);
+            ->equal('preshared-key', $peer->presharedKey)
+            ->equal('comment', $user->email);
 
         $routerOS->client->query($query)->read();
 
