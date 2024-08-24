@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
          User::factory()->create([
-             'email' => 'admin@xterm.me',
+             'username' => 'admin',
              'password' => 'secret',
              'role' => Role::Admin,
          ]);
 
          User::factory()->create([
-             'email' => 'user@xterm.me',
+             'username' => 'user',
              'password' => 'secret',
              'role' => Role::User,
          ]);

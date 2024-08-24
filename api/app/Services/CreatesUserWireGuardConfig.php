@@ -6,13 +6,19 @@ use App\Models\Config;
 use App\Models\User;
 use App\RouterOS\IPAddress;
 use App\RouterOS\WireGuard;
+use Exception;
 use IPTools\IP;
+use SodiumException;
 
-class CreatesUserWireGuardConfig
+readonly class CreatesUserWireGuardConfig
 {
-    public function __construct(private readonly User $user)
+    public function __construct(private User $user)
     {}
 
+    /**
+     * @throws SodiumException
+     * @throws Exception
+     */
     public function __invoke(): Config
     {
         $ip = $this->getNextAvailableIP();
@@ -21,7 +27,7 @@ class CreatesUserWireGuardConfig
         $psk = KeyGenerator::generateBase64Psk();
 
         $config = new Config([
-            'peer_name' => $this->user->email,
+            'peer_name' => $this->user->username,
             'peer_private_key' => $key['private'],
             'peer_public_key' => $key['public'],
             'peer_preshared_key' => $psk,
@@ -40,6 +46,11 @@ class CreatesUserWireGuardConfig
         return $config;
     }
 
+    /**
+     * Find the next available IP from MikroTik for the vpn subnet
+     *
+     * @throws Exception
+     */
     private function getNextAvailableIP(): IP
     {
         $range = IPAddress::getWireGuardAddresses();
@@ -65,6 +76,6 @@ class CreatesUserWireGuardConfig
             }
         }
 
-        throw new \Exception('Could not find available IP for client');
+        throw new Exception('Could not find available IP for client');
     }
 }
