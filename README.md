@@ -1,5 +1,4 @@
 # MikroGuard
-### **Recently renamed from microguard. For now the microguard ghcr image will continue to be updated inline with the new mikroguard ghcr for backwards compatibility, But would recommend switching to the new image. No migration steps are needed, the only difference is the name and the new mikroguard image won't have versions before v1.1.4
 
 MikroGuard is a robust web-based management tool designed to streamline the handling of WireGuard VPN clients on MikroTik routers. It simplifies user addition, access revocation, and provides a real-time view of connection statistics.
 
