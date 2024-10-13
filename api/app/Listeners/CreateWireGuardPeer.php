@@ -27,6 +27,7 @@ class CreateWireGuardPeer
     public function handle(ConfigCreated $event): void
     {
         $peer = new Peer(
+            $event->config->peer_name,
             $event->config->address,
             $event->config->peer_public_key,
             config('services.wireguard.interface'),

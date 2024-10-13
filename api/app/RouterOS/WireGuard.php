@@ -63,12 +63,15 @@ class WireGuard extends RouterOS
     public static function createPeer(Peer $peer): void
     {
         $routerOS = new self();
+        $resource = Resource::getRouterResource();
+        $useName = version_compare($resource->version, '7.15') >= 0;
 
         $query = new Query('/interface/wireguard/peers/add');
         $query->equal('allowed-address',  $peer->allowedAddress)
             ->equal('interface', $peer->interface)
             ->equal('public-key', $peer->publicKey)
-            ->equal('preshared-key', $peer->presharedKey);
+            ->equal('preshared-key', $peer->presharedKey)
+            ->equal($useName ? 'name' : 'comment', $peer->name);
 
         $routerOS->client->query($query)->read();
     }

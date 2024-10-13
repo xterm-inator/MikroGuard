@@ -2,8 +2,8 @@
 
 namespace App\RouterOS\Data;
 
-class WireGuardInterface
+readonly class WireGuardInterface
 {
-    public function __construct(public readonly string $publicKey)
+    public function __construct(public string $publicKey)
     {}
 }
