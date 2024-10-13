@@ -34,9 +34,7 @@ MikroGuard is a robust web-based management tool designed to streamline the hand
 ## Self Sanity Check
 If you would like to check what this program will run on your router before allowing access, check files 'api/app/RouterOS/WireGuard.php' and 'api/app/RouterOS/IPAddress.php'.
 
-These files contain all access to the router so you can see the commands run.
-
-Also, no user input is ever passed to the router; only values you, as the admin, have entered through environment variables.
+These files contain all access to the router, so you can see the commands run.
 
 ## Setup
 

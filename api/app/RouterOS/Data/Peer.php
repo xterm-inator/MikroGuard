@@ -2,13 +2,13 @@
 
 namespace App\RouterOS\Data;
 
-class Peer
+readonly class Peer
 {
     public function __construct(
-        public readonly string $allowedAddress,
-        public readonly string $publicKey,
-        public readonly string $interface,
-        public readonly string $presharedKey,
+        public string $allowedAddress,
+        public string $publicKey,
+        public string $interface,
+        public string $presharedKey,
     )
     {}
 }
