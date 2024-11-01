@@ -13,14 +13,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        platform:
-          - linux/amd64
-          - linux/arm/v6
-          - linux/arm/v7
-          - linux/arm64
     steps:
     - uses: actions/checkout@v3
       name: Checkout
@@ -49,12 +41,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: .
-        platforms: |
-            linux/amd64
-            linux/386
-            linux/arm/v6
-            linux/arm/v7
-            linux/arm64
+        platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
