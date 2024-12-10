@@ -6,6 +6,7 @@ export interface Config {
   peer_private_key: string
   peer_public_key: string
   peer_preshared_key: string
+  peer_persistent_keepalive?: number
   server_name: string
   server_public_key: string
   endpoint: string

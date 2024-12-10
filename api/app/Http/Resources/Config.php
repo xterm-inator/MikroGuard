@@ -19,6 +19,7 @@ class Config extends JsonResource
             'peer_private_key' => $this->peer_private_key,
             'peer_public_key' => $this->peer_public_key,
             'peer_preshared_key' => $this->peer_preshared_key,
+            'peer_persistent_keepalive' => $this->when(config('services.wireguard.persistent_keepalive'), config('services.wireguard.persistent_keepalive')),
             'server_name' => $this->server_name,
             'server_public_key' => $this->server_public_key,
             'endpoint' => $this->endpoint,

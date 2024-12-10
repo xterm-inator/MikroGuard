@@ -73,6 +73,10 @@ class WireGuard extends RouterOS
             ->equal('preshared-key', $peer->presharedKey)
             ->equal($useName ? 'name' : 'comment', $peer->name);
 
+        if (config('services.wireguard.persistent_keepalive')) {
+            $query->equal('persistent-keepalive', config('services.wireguard.persistent_keepalive'));
+        }
+
         $routerOS->client->query($query)->read();
     }
 
