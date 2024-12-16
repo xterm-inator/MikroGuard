@@ -2,10 +2,9 @@
 
 MikroGuard is a robust web-based management tool designed to streamline the handling of WireGuard VPN clients on MikroTik routers. It simplifies user addition, access revocation, and provides a real-time view of connection statistics.
 
-| Login | Users | Connection |
-| --- | --- | --- |
-![login](https://github.com/xterm-inator/MikroGuard/assets/7698065/3ea6b5b0-b9ca-4b1b-a546-955724d5bedf) | ![user](https://github.com/xterm-inator/MikroGuard/assets/7698065/4864029e-c176-4577-96f1-20bf3e982b53) | ![connection](https://github.com/xterm-inator/MikroGuard/assets/7698065/1f44b3b7-f4c6-4bd1-819a-b1e19fdf619c)
-
+| Login                                                                                                    | Users                                                                                                   | Connection                                                                                                    |
+|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| ![login](https://github.com/xterm-inator/MikroGuard/assets/7698065/3ea6b5b0-b9ca-4b1b-a546-955724d5bedf) | ![user](https://github.com/xterm-inator/MikroGuard/assets/7698065/4864029e-c176-4577-96f1-20bf3e982b53) | ![connection](https://github.com/xterm-inator/MikroGuard/assets/7698065/1f44b3b7-f4c6-4bd1-819a-b1e19fdf619c) |
 
 ## Table of Contents
 - [Features](#features)
@@ -141,22 +140,23 @@ services:
 **Environment Varibles**:
 This is a list of the most useful environment variables. To find all available look in api/config files
 
-| Variable | Description | Default |
-| --- | --- | --- |
-| APP_KEY* | App key used mainly for encryption, set using [this generator](https://generate-random.org/laravel-key-generator) |  |
-| APP_URL* | The url this instance will be accessed from, can be localhost, an IP address or a domain eg. http://localhost:8000 | http://localhost:8000 |
-| GOOGLE_CLIENT_ID | Google OAuth Client ID (Only required if using google auth) |  |
-| GOOGLE_CLIENT_SECRET | Google OAuth Client Secret (Only required if using google auth) |  |
-| GOOGLE_REDIRECT_URL | Google OAuth Redirect Url, eg. https://my.public.address/api/auth/oauth/google/callback (Only required if using google auth) |  |
-| ROUTEROS_HOST* | IP address of your MikroTik router |  |
-| ROUTEROS_PORT* | API port to access the router |  |
-| ROUTEROS_USER* | User to log into the router |  |
-| ROUTEROS_PASS* | Password to use to log into the router |  |
-| ROUTEROS_WIREGUARD_INTERFACE* | WireGuard interface name, must match the wireguard interface name created on the MikroTik router eg. wireguard Road Warrior |  |
-| ROUTEROS_WIREGUARD_ENDPOINT* | Your public IP clients use to connect to your WireGurad server on your MikroTik Router including the port eg. 123.123.123.123:12345 |  |
-| ROUTEROS_WIREGUARD_SERVER_NAME | Default server name given to clients, can be anything | WireGuard Server |
-| ROUTEROS_WIREGUARD_DNS | Client DNS server to use | 1.1.1.1 |
-| ROUTEROS_WIREGUARD_ALLOWED_IPS | Client IPs to forward, Defaults to everything | 0.0.0.0/0 |
+| Variable                                | Description                                                                                                                         | Default               |
+|-----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
+| APP_KEY*                                | App key used mainly for encryption, set using [this generator](https://generate-random.org/laravel-key-generator)                   |                       |
+| APP_URL*                                | The url this instance will be accessed from, can be localhost, an IP address or a domain eg. http://localhost:8000                  | http://localhost:8000 |
+| GOOGLE_CLIENT_ID                        | Google OAuth Client ID (Only required if using google auth)                                                                         |                       |
+| GOOGLE_CLIENT_SECRET                    | Google OAuth Client Secret (Only required if using google auth)                                                                     |                       |
+| GOOGLE_REDIRECT_URL                     | Google OAuth Redirect Url, eg. https://my.public.address/api/auth/oauth/google/callback (Only required if using google auth)        |                       |
+| ROUTEROS_HOST*                          | IP address of your MikroTik router                                                                                                  |                       |
+| ROUTEROS_PORT*                          | API port to access the router                                                                                                       |                       |
+| ROUTEROS_USER*                          | User to log into the router                                                                                                         |                       |
+| ROUTEROS_PASS*                          | Password to use to log into the router                                                                                              |                       |
+| ROUTEROS_WIREGUARD_INTERFACE*           | WireGuard interface name, must match the wireguard interface name created on the MikroTik router eg. wireguard Road Warrior         |                       |
+| ROUTEROS_WIREGUARD_ENDPOINT*            | Your public IP clients use to connect to your WireGurad server on your MikroTik Router including the port eg. 123.123.123.123:12345 |                       |
+| ROUTEROS_WIREGUARD_SERVER_NAME          | Default server name given to clients, can be anything                                                                               | WireGuard Server      |
+| ROUTEROS_WIREGUARD_DNS                  | Client DNS server to use                                                                                                            | 1.1.1.1               |
+| ROUTEROS_WIREGUARD_ALLOWED_IPS          | Client IPs to forward, Defaults to everything                                                                                       | 0.0.0.0/0             |
+| ROUTEROS_WIREGUARD_PERSISTENT_KEEPALIVE | WireGuard Persistent Keepalive                                                                                                      |                       |
 
 *Required
 
