@@ -42,7 +42,8 @@ return [
         'endpoint' => env('ROUTEROS_WIREGUARD_ENDPOINT'),
         'server_name' => env('ROUTEROS_WIREGUARD_SERVER_NAME', 'WireGuard Server'),
         'dns' => env('ROUTEROS_WIREGUARD_DNS', '1.1.1.1'),
-        'allowed_ips' => env('ROUTEROS_WIREGUARD_ALLOWED_IPS', '0.0.0.0/0')
+        'allowed_ips' => env('ROUTEROS_WIREGUARD_ALLOWED_IPS', '0.0.0.0/0'),
+        'persistent_keepalive' => env('ROUTEROS_WIREGUARD_PERSISTENT_KEEPALIVE'),
     ]
 
 ];

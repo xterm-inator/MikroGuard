@@ -13,6 +13,7 @@ PresharedKey=${config.peer_preshared_key}
 PublicKey=${config.server_public_key}
 Endpoint=${config.endpoint}
 AllowedIPs=${config.allowed_ips}
+${config.peer_persistent_keepalive ? `PersistentKeepalive=${config.peer_persistent_keepalive}` : ''}
 `
 }
 
