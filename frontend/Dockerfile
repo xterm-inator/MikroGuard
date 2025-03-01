@@ -1,4 +1,4 @@
-FROM node:erbium
+FROM node:jod
 
 # Copy across the "package.json" and "package-lock" files to install dependencies.
 RUN mkdir -p /opt/app
