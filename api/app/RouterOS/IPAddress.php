@@ -36,6 +36,10 @@ class IPAddress extends RouterOS
 
         $response = $routerOS->client->query($query)->read();
 
+        if (config('app.debug')) {
+            logger(sprintf('Used IP addresses: %s', array_reduce($response, fn ($carry, $peer) => $carry .= '('.$peer['allowed-address'].'), ', '')));
+        }
+
         if (!count($response)) {
             return [];
         }
@@ -51,6 +55,9 @@ class IPAddress extends RouterOS
                 }
                 try {
                     $ips[] = Range::parse($ip);
+                    if (config('app.debug')) {
+                        logger(sprintf('Added used IP address: %s', $ip));
+                    }
                 } catch (IpException $exception) {
                     logger(sprintf('Invalid IP - %s, %s', $peer['allowed-address'], $exception->getMessage()));
                 }
