@@ -10,7 +10,7 @@
         <!-- Page title actions -->
         <div class="col-12 col-md-auto ms-auto d-print-none">
           <div class="btn-list">
-            <button class="btn btn-white d-sm-inline-block" @click="handleDownload">Download</button>
+            <button class="btn btn-white d-sm-inline-block" @click="handleDowwnload">Download</button>
             <button class="btn btn-danger d-sm-inline-block" @click="handleDelete">Delete</button>
           </div>
         </div>
