@@ -11,7 +11,7 @@ services:
         build:
             context: ./frontend
         ports:
-            - "3000:3000"
+            - "3000:5173"
             - "3101:3101"
         volumes:
             - ./frontend/:/opt/app

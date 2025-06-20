@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Config;
+use App\Models\Peer;
 use App\Models\User;
 use App\RouterOS\IPAddress;
 use App\RouterOS\WireGuard;
@@ -12,22 +12,22 @@ use SodiumException;
 
 readonly class CreatesUserWireGuardConfig
 {
-    public function __construct(private User $user)
+    public function __construct(private User $user, private string $name)
     {}
 
     /**
      * @throws SodiumException
      * @throws Exception
      */
-    public function __invoke(): Config
+    public function __invoke(): Peer
     {
         $ip = $this->getNextAvailableIP();
         $interface = WireGuard::getWireGuardInterface();
         $key = KeyGenerator::generateBase64Keypair();
         $psk = KeyGenerator::generateBase64Psk();
 
-        $config = new Config([
-            'peer_name' => $this->user->username,
+        $config = new Peer([
+            'peer_name' => "{$this->user->username} ($this->name)",
             'peer_private_key' => $key['private'],
             'peer_public_key' => $key['public'],
             'peer_preshared_key' => $psk,
