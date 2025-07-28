@@ -19,9 +19,9 @@ const router = createRouter({
     },
     {
       path: '/',
-      name: 'connection',
+      name: 'connections',
       meta: { template: 'main', requiresAuth: true },
-      component: () => import('../views/Connection.vue'),
+      component: () => import('../views/Connections.vue'),
       props () {
         return {
           id: useAppStore().user.id
@@ -38,7 +38,7 @@ const router = createRouter({
       path: '/users/:id',
       name: 'users.connection',
       meta: { template: 'main', requiresAuth: true, roles: ['admin'] },
-      component: () => import('../views/Connection.vue'),
+      component: () => import('../views/Connections.vue'),
       props: true
     }
   ]

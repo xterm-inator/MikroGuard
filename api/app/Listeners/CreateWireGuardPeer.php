@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\ConfigCreated;
+use App\Events\PeerCreated;
 use App\RouterOS\Data\Peer;
 use App\RouterOS\WireGuard;
 
@@ -21,10 +21,10 @@ class CreateWireGuardPeer
     /**
      * Handle the event.
      *
-     * @param ConfigCreated $event
+     * @param PeerCreated $event
      * @return void
      */
-    public function handle(ConfigCreated $event): void
+    public function handle(PeerCreated $event): void
     {
         $peer = new Peer(
             $event->config->peer_name,

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUser;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
-use \App\Http\Resources\User as UserResource;
+use \App\Http\Resources\UserResource as UserResource;
 use App\RouterOS\WireGuard;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
@@ -16,19 +16,20 @@ class UserController extends Controller
         $this->authorize('index', User::class);
 
         $users = User::orderBy('username')
-            ->with('config')
+            ->with('peers')
             ->get();
 
         $peers = WireGuard::getPeers();
 
         foreach ($users as $user) {
-            $user->peer = $peers[$user->config->peer_public_key ?? null] ?? null;
+            $pubKeys = $user->peers->pluck('peer_public_key')->toArray();
+            $user->router_peers = collect(array_filter($peers, fn ($key) => in_array($key, $pubKeys), ARRAY_FILTER_USE_KEY));
         }
 
         return UserResource::collection($users);
     }
 
-    public function store(StoreUser $request): UserResource
+    public function store(StoreUserRequest $request): UserResource
     {
         $user = User::create($request->validated());
 

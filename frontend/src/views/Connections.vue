@@ -5,8 +5,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import Empty from '@/components/connection/Empty.vue'
-import ConnectionDetails from '@/components/connection/Details.vue'
+import Empty from '@/components/connections/Empty.vue'
+import ConnectionDetails from '@/components/connections/Details.vue'
 import { useConfigStore } from '@/stores/config'
 import { computed, onMounted, onBeforeUnmount, ref } from 'vue'
 

@@ -55,8 +55,8 @@ class User extends Authenticatable
         return $this->hasMany(OAuthProvider::class);
     }
 
-    public function config(): HasOne
+    public function peers(): HasMany
     {
-        return $this->hasOne(Config::class);
+        return $this->hasMany(Peer::class);
     }
 }
