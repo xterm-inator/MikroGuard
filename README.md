@@ -240,3 +240,7 @@ Contribute to MikroGuard by submitting a pull request or issue on GitHub. We wel
 
 ## License
 MikroGuard is licensed under the GNU General Public License v3.0. Details are in the [LICENSE.md](LICENSE.md) file.
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=xterm-inator/MikroGuard&type=date&legend=top-left)](https://www.star-history.com/#xterm-inator/MikroGuard&type=date&legend=top-left)
