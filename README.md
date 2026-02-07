@@ -79,7 +79,7 @@ Enter the following command to create a new user:
 2. Go to "WireGuard" > "Add".
 3. Label the interface (e.g., "wireguard road warrior") and click Apply.
 4. Document the public key of the freshly created WireGuard server for subsequent use.
-5. Got to "IP" > "Address" > "New".
+5. Go to "IP" > "Address" > "New".
 6. add the address subnet you want your WireGuard clients to use and select the WireGuard interface.
 
 ### Server Installation
