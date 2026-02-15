@@ -26,7 +26,7 @@ readonly class CreatesUserWireGuardConfig
         $key = KeyGenerator::generateBase64Keypair();
         $psk = KeyGenerator::generateBase64Psk();
 
-        $config = new Peer([
+        return $this->user->peers()->create([
             'peer_name' => "{$this->user->username} ($this->name)",
             'peer_private_key' => $key['private'],
             'peer_public_key' => $key['public'],
@@ -38,12 +38,6 @@ readonly class CreatesUserWireGuardConfig
             'allowed_ips' => config('services.wireguard.allowed_ips'),
             'address' => (string)$ip,
         ]);
-
-        $config->user_id = $this->user->id;
-
-        $config->save();
-
-        return $config;
     }
 
     /**

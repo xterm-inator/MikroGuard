@@ -22,7 +22,7 @@ class ConfigController extends Controller
             return $peer;
         })?->filter(function (Peer $peer) {
             // if details is null means it has been deleted from the router, we will delete the local peer.
-            if ($peer->details) {
+            if (!$peer->details) {
                 $peer->delete();
                 return false;
             }
