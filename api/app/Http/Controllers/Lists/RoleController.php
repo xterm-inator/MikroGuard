@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Lists;
 
 use App\Http\Controllers\Controller;
 use App\Support\Enums\Role;
-use \App\Http\Resources\Role as RoleResource;
+use \App\Http\Resources\RoleResource as RoleResource;
 
 class RoleController extends Controller
 {

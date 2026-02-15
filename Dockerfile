@@ -1,5 +1,5 @@
 #Vue App
-FROM node:erbium as vuejs
+FROM node:krypton as vuejs
 RUN mkdir -p /opt/app
 COPY frontend/ /opt/app
 RUN rm -rf /opt/app/node_modules

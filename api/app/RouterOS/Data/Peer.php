@@ -14,6 +14,6 @@ readonly class Peer
         public string $presharedKey,
     )
     {
-        $this->name = preg_replace('/[^A-Za-z0-9 .\-_@+]/', '', $name);
+        $this->name = preg_replace('/[^A-Za-z0-9 .\-_()@+]/', '', $name);
     }
 }

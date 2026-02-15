@@ -32,12 +32,12 @@
         <div class="navbar navbar-light">
           <div class="container-xl">
             <ul class="navbar-nav">
-              <nav-item name="connection">
+              <nav-item name="connections">
                 <template v-slot:icon>
                   <network-icon/>
                 </template>
                 <template v-slot:text>
-                  Connection
+                  Connections
                 </template>
               </nav-item>
               <nav-item name="users" v-if="user.role === 'admin'">
