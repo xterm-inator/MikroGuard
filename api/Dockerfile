@@ -5,7 +5,7 @@ ARG GID=1000
 
 # Set to keep file permissions same as host for mounted volume
 RUN groupadd --gid $GID mikroguard
-RUN useradd -g mikroguard -m -u $UID mikroguard
+RUN useradd -g mikroguard -l -m -u $UID mikroguard
 
 RUN apt update && apt install -y \
     nodejs \
