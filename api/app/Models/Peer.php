@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use App\Events\ConfigCreated;
-use App\Events\ConfigDeleting;
+use App\Events\PeerCreated;
+use App\Events\PeerDeleting;
+use App\Support\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Config extends Model
+class Peer extends Model
 {
-    protected $table = 'user_config';
+    use Uuids;
 
     protected $fillable = [
         'peer_name',
@@ -32,8 +33,8 @@ class Config extends Model
     ];
 
     protected $dispatchesEvents = [
-        'created' => ConfigCreated::class,
-        'deleting' => ConfigDeleting::class
+        'created' => PeerCreated::class,
+        'deleting' => PeerDeleting::class
     ];
 
     public function user(): BelongsTo

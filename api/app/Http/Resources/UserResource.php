@@ -6,7 +6,7 @@ use App\Support\Enums\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class User extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,11 +20,14 @@ class User extends JsonResource
             'id' => $this->uuid,
             'username' => $this->username,
             'role' => $this->when($request->user()->role === Role::Admin, $this->role),
-            $this->mergeWhen($this->peer, fn () =>
+            $this->mergeWhen($this->router_peers, fn () =>
                 [
-                    'rx' => (int)$this->peer['rx'],
-                    'tx' => (int)$this->peer['tx'],
-                    'last_handshake' => generate_last_handshake_date($this->peer['last-handshake'] ?? null)?->format('Y-m-d H:i:s'),
+                    'rx' => (int)$this->router_peers->sum('rx'),
+                    'tx' => (int)$this->router_peers->sum('rx'),
+                    'last_handshake' => $this->router_peers
+                        ->filter(fn ($peer) => $peer['last-handshake'] ?? false)
+                        ->max(fn ($peer) => generate_last_handshake_date($peer['last-handshake']))
+                        ?->format('Y-m-d H:i:s'),
                 ]
             ),
         ];

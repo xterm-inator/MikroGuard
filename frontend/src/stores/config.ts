@@ -23,6 +23,7 @@ export interface Config {
 export const useConfigStore = defineStore({
   id: 'config',
   state: () => ({
+    collection: <Config[]>[],
     config: <Config|null>null,
   }),
 
@@ -30,6 +31,7 @@ export const useConfigStore = defineStore({
   },
 
   actions: {
+
     async getConfig(userId: string): Promise<any> {
       const response = await http.get(`config/${userId}`)
 
@@ -38,8 +40,8 @@ export const useConfigStore = defineStore({
       return response
     },
 
-    async createConfig(userId: string): Promise<any> {
-      const response = await http.post(`config/${userId}`)
+    async createConfig(userId: string, name: string): Promise<any> {
+      const response = await http.post(`config/${userId}`, { name })
 
       this.config = response.data.data
 

@@ -98,11 +98,10 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { NetworkIcon, FileDescriptionIcon, QrcodeIcon } from 'vue-tabler-icons'
 import QrcodeVue from 'qrcode.vue'
 import { generateString } from '@/utils/config-string-generator'
-import { useConfigStore } from '@/stores/config'
 import { computed, onMounted, ref } from 'vue'
 import StatsCard from '@/components/StatsCard.vue'
 import prettyBytes from 'pretty-bytes'
@@ -112,38 +111,33 @@ import { saveAs } from 'file-saver'
 import { kebabCase } from 'lodash'
 import Hidden from '@/components/Hidden.vue'
 import dayjs from 'dayjs'
+import type { Config } from '@/stores/config'
 
 interface Props {
-  id: string
+  config: Config
 }
 
 const props = defineProps<Props>()
 
-const configStore = useConfigStore()
-
-let configString = ref<string>('')
-
-const config = computed(() => configStore.config)
+onMounted(() => {
+  if (props.config) {
+    props.value = generateString(props.config)
+  }
+})
 
 const lastHandshake = computed(() => {
-  if (configStore.config && configStore.config.last_handshake) {
-    return dayjs.utc(configStore.config.last_handshake).local().fromNow()
+  if (props.config && props.config.last_handshake) {
+    return dayjs.utc(props.config.last_handshake).local().fromNow()
   }
 
   return '-'
 })
 
-onMounted(() => {
-  if (configStore.config) {
-    configString.value = generateString(configStore.config)
-  }
-})
-
 async function handleDownload(): Promise<void> {
-  if (configStore.config) {
-    const configName = kebabCase(configStore.config.server_name)
+  if (props.config) {
+    const configName = kebabCase(props.config.server_name)
     let zip = new JSZip();
-    zip.file(`${configName}.conf`, configString.value)
+    zip.file(`${configName}.conf`, props.value)
     const content = await zip.generateAsync({ type: 'blob' })
     saveAs(content, `${configName}.zip`)
   }

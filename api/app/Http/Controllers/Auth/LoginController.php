@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Auth\ThrottlesLogins;
-use App\Http\Requests\Auth\Login;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Lang;
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\UserResource as UserResource;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -32,12 +32,12 @@ class LoginController extends Controller
     /**
      * Handle an authentication attempt.
      *
-     * @param Login $request
+     * @param LoginRequest $request
      * @param Auth $auth
      * @return UserResource
      *@throws HttpResponseException
      */
-    public function __invoke(Login $request, Auth $auth)
+    public function __invoke(LoginRequest $request, Auth $auth)
     {
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);

@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import { BrandGoogleIcon } from 'vue-tabler-icons'
-import { defineEmits, onBeforeUnmount, onMounted } from 'vue'
+import { onBeforeUnmount, onMounted } from 'vue'
 import { useAppStore } from '@/stores/app'
 
 const emit = defineEmits(['authenticated'])

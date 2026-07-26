@@ -1,6 +1,6 @@
 <template>
   <div class="empty">
-    <div class="empty-img"><img :src="image" height="128" alt="">
+    <div class="empty-img"><img :src="image" height="128" alt="" style="height: 128px">
     </div>
     <p class="empty-title">No configuration found</p>
     <p class="empty-subtitle text-muted">
@@ -19,16 +19,12 @@ import { PlusIcon } from 'vue-tabler-icons'
 import image from '@/assets/illustrations/undraw_quitting_time.svg'
 import { useConfigStore } from '@/stores/config'
 
-interface Props {
-  id: string
-}
-
-const props = defineProps<Props>()
-
-const store = useConfigStore()
+const emit = defineEmits<{
+  (e: 'add'): void
+}>()
 
 function handleCreateConfig() {
-  return store.createConfig(props.id)
+  emit('add')
 }
 
 </script>
