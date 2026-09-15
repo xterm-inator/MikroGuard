@@ -2,9 +2,9 @@
   <div class="container-xl d-flex flex-column justify-content-center" v-if="!loading">
     <empty v-if="!config?.length" :id="id" @add="handleAddConnection"></empty>
     <template v-else>
-      <async-button class="btn btn-primary col-2 mb-10" @click.prevent="handleAddConnection">
+      <async-button class="btn btn-primary mb-4 align-self-end" @click.prevent="handleAddConnection">
           <plus-icon></plus-icon>
-          Create WireGuard config
+          Create Connection
       </async-button>
       <connection-details :id="id"></connection-details>
     </template>

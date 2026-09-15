@@ -50,6 +50,7 @@ resetName({
 const handleCreate = handleSubmit(async (values, actions) => {
   try {
     await store.createConfig(props.id, values.name)
+    await store.getConfig(props.id)
     if (modal && modal.value) {
       modal.value.close()
     }

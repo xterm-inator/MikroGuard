@@ -41,11 +41,7 @@ export const useConfigStore = defineStore({
     },
 
     async createConfig(userId: string, name: string): Promise<any> {
-      const response = await http.post(`config/${userId}`, { name })
-
-      this.config = response.data.data
-
-      return response
+      await http.post(`config/${userId}`, { name })
     },
 
     async deleteConfig(userId: string): Promise<any> {
