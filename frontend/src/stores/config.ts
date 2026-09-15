@@ -25,7 +25,7 @@ export const useConfigStore = defineStore({
   id: 'config',
   state: () => ({
     collection: <Config[]>[],
-    config: <Config|null>null,
+    config: <Config[]|null>null,
   }),
 
   getters: {
