@@ -8,8 +8,11 @@
       </div>
     </form>
     <template #footer="{ close }">
-      <button class="btn btn-link link-secondary" @click="close">Cancel</button>
-      <async-button class="btn btn-primary ms-auto" @click="handleCreate"><plus-icon/> Create Connection</async-button>
+      <button type="button" class="btn btn-link link-secondary" @click="close">Cancel</button>
+      <async-button class="btn btn-primary ms-auto d-inline-flex align-items-center" @click="handleCreate">
+        <plus-icon class="me-1" :size="16"/>
+        Create Connection
+      </async-button>
     </template>
   </modal>
 </template>

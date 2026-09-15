@@ -1,7 +1,9 @@
 <template>
-  <div class="card mb-3" v-for="detail in config" :key="detail.id">
-    <div class="card-body">
-      <connection :config="detail" :onDelete="props.onDelete"/>
+  <div class="d-flex flex-column gap-3">
+    <div class="card shadow-sm border-0" v-for="detail in config" :key="detail.id">
+      <div class="card-body p-4">
+        <connection :config="detail" :onDelete="props.onDelete"/>
+      </div>
     </div>
   </div>
 </template>
@@ -19,5 +21,4 @@ const props = defineProps<Props>()
 const configStore = useConfigStore()
 
 const config = computed(() => configStore.config)
-
 </script>
