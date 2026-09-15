@@ -7,10 +7,8 @@
         </button>
         <div class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
           <router-link :to="{ name: 'connections' }" class="text-decoration-none d-flex align-items-center text-reset">
-            <span class="avatar avatar-sm bg-primary-lt rounded me-2">
-              <shield-lock-icon class="text-primary" :size="20"/>
-            </span>
-            <span class="fw-bold fs-3">MikroGuard</span>
+            <logo-icon :size="28" class="me-2" />
+            <span class="fw-bold fs-3">Mikro<span class="text-primary">Guard</span></span>
           </router-link>
         </div>
 
@@ -91,8 +89,9 @@
 </template>
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import { UsersIcon, NetworkIcon, UserIcon, ShieldLockIcon, MoonIcon, SunIcon, LogoutIcon, BrandGithubIcon } from 'vue-tabler-icons'
+import { UsersIcon, NetworkIcon, UserIcon, MoonIcon, SunIcon, LogoutIcon } from 'vue-tabler-icons'
 import NavItem from '@/components/NavItem.vue'
+import LogoIcon from '@/components/LogoIcon.vue'
 import { useAppStore } from '@/stores/app'
 import { computed, ref, onMounted } from 'vue'
 

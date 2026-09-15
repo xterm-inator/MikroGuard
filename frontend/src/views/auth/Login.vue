@@ -2,10 +2,10 @@
   <div class="card card-md shadow-sm border-0">
     <div class="card-body">
       <div class="text-center mb-4">
-        <span class="avatar avatar-lg bg-primary-lt rounded-circle mb-3">
-          <shield-lock-icon class="text-primary" :size="32"/>
-        </span>
-        <h2 class="card-title fs-2 mb-1">Welcome to MikroGuard</h2>
+        <div class="mb-3 d-inline-block">
+          <logo-icon :size="56" />
+        </div>
+        <h2 class="card-title fs-2 mb-1">Welcome to Mikro<span class="text-primary">Guard</span></h2>
         <div class="text-muted">Sign in to manage WireGuard connections</div>
       </div>
       <div v-if="tooManyAttemptsError" class="mb-3 alert alert-danger">{{ tooManyAttemptsError }}.</div>
@@ -46,7 +46,8 @@ import { toFormValidator } from '@vee-validate/zod'
 import * as zod from 'zod'
 import { useForm, useField } from 'vee-validate'
 import AsyncButton from '@/components/AsyncButton.vue'
-import { ShieldLockIcon, UserIcon, LockIcon } from 'vue-tabler-icons'
+import LogoIcon from '@/components/LogoIcon.vue'
+import { UserIcon, LockIcon } from 'vue-tabler-icons'
 import { ref } from 'vue'
 
 const tooManyAttemptsError = ref(null)
