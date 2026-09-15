@@ -15,6 +15,7 @@ class ConfigResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->uuid,
             'peer_name' => $this->peer_name,
             'peer_private_key' => $this->peer_private_key,
             'peer_public_key' => $this->peer_public_key,

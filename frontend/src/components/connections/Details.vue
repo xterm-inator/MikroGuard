@@ -1,7 +1,7 @@
 <template>
   <div class="card mb-3" v-for="detail in config">
     <div class="card-body">
-      <connection :config="detail" />
+      <connection :config="detail" :onDelete="props.onDelete"/>
     </div>
   </div>
 </template>
@@ -9,6 +9,12 @@
 import { useConfigStore } from '@/stores/config'
 import { computed } from 'vue'
 import Connection from '@/components/connections/Connection.vue'
+
+interface Props {
+  onDelete: (id: string) => Promise<void>
+}
+
+const props = defineProps<Props>()
 
 const configStore = useConfigStore()
 

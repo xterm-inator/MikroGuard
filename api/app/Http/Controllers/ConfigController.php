@@ -9,6 +9,7 @@ use App\Models\User;
 use App\RouterOS\WireGuard;
 use App\Services\CreatesUserWireGuardConfig;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 
 class ConfigController extends Controller
@@ -43,11 +44,11 @@ class ConfigController extends Controller
         return new ConfigResource($config);
     }
 
-    public function destroy(User $user, Peer $config): ConfigResource
+    public function destroy(User $user, Peer $peer): Response
     {
         $this->authorize('config', $user);
 
-        $config->delete();
+        $peer->delete();
 
         return response()->noContent();
     }

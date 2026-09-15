@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { http } from '@/utils'
 
 export interface Config {
+  id: string
   peer_name: string
   peer_private_key: string
   peer_public_key: string
@@ -31,7 +32,6 @@ export const useConfigStore = defineStore({
   },
 
   actions: {
-
     async getConfig(userId: string): Promise<any> {
       const response = await http.get(`config/${userId}`)
 
@@ -44,10 +44,10 @@ export const useConfigStore = defineStore({
       await http.post(`config/${userId}`, { name })
     },
 
-    async deleteConfig(userId: string): Promise<any> {
-      await http.delete(`config/${userId}`)
+    async deleteConfig(userId: string, configId: string): Promise<any> {
+      await http.delete(`config/${userId}/${configId}`)
 
-      this.resetConfig()
+      await this.getConfig(userId)
     },
 
     resetConfig (): void {

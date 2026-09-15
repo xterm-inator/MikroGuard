@@ -6,7 +6,7 @@
           <plus-icon></plus-icon>
           Create Connection
       </async-button>
-      <connection-details :id="id"></connection-details>
+      <connection-details :id="id" :onDelete="handleDeleteConnection"></connection-details>
     </template>
 
     <add-connection-modal :id="id" ref="addConnection"></add-connection-modal>
@@ -59,5 +59,10 @@ const handleAddConnection = async () => {
   if (addConnection && addConnection.value) {
     addConnection.value.modal.open()
   }
+}
+
+const handleDeleteConnection = async (id: string) => {
+  await configStore.deleteConfig(props.id, id)
+  await configStore.getConfig(props.id)
 }
 </script>

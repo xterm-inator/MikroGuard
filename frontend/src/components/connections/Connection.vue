@@ -84,12 +84,12 @@
             </div>
             <div class="tab-pane" id="tabs-config" role="tabpanel">
               <div>
-                <pre>{{ configString }}</pre>
+                <pre>{{ generateString(props.config) }}</pre>
               </div>
             </div>
             <div class="tab-pane" id="tabs-qrcode" role="tabpanel">
               <div class="text-center">
-                <qrcode-vue :value="configString" :size="300" level="H" render-as="svg" :margin="10"/>
+                <qrcode-vue :value="generateString(props.config)" :size="300" level="H" render-as="svg" :margin="10"/>
               </div>
             </div>
           </div>
@@ -115,6 +115,7 @@ import type { Config } from '@/stores/config'
 
 interface Props {
   config: Config
+  onDelete: (id: string) => Promise<void>
 }
 
 const props = defineProps<Props>()
@@ -153,7 +154,7 @@ async function handleDelete(): Promise<void> {
     dangerMode: true
   })
   if (response) {
-    await configStore.deleteConfig(props.id)
+    await props.onDelete(props.config.id)
 
     if (swal.stopLoading && swal.close) {
       swal.stopLoading()

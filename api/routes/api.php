@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::get('config/{user:uuid}', [Controllers\ConfigController::class, 'index']);
     Route::post('config/{user:uuid}', [Controllers\ConfigController::class, 'store']);
-    Route::delete('config/{user:uuid}', [Controllers\ConfigController::class, 'destroy']);
+    Route::delete('config/{user:uuid}/{peer:uuid}', [Controllers\ConfigController::class, 'destroy']);
 
     Route::prefix('lists')->group(function () {
         Route::get('roles', Controllers\Lists\RoleController::class);
