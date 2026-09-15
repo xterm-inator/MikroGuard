@@ -1,9 +1,9 @@
 <template>
-  <div class="modal blur fade" tabindex="-1" role="dialog" ref="root">
+  <div class="modal modal-blur fade" tabindex="-1" role="dialog" ref="root">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-      <div class="modal-content">
+      <div class="modal-content shadow-sm">
         <div class="modal-header">
-          <h2 class="modal-title">{{ props.title }}</h2>
+          <h5 class="modal-title fs-3 fw-bold">{{ props.title }}</h5>
 
           <slot name="close" v-bind="{ close }">
             <button type="button" aria-label="Close" class="btn-close" @click="close"></button>

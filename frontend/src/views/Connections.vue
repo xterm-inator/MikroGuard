@@ -1,23 +1,30 @@
 <template>
-  <div class="container-xl d-flex flex-column justify-content-center" v-if="!loading">
-    <empty v-if="!config?.length" :id="id" @add="handleAddConnection"></empty>
-    <template v-else>
-      <async-button class="btn btn-primary mb-4 align-self-end" @click.prevent="handleAddConnection">
-          <plus-icon></plus-icon>
+  <div>
+    <page-header title="WireGuard Connections" pretitle="Overview" subtitle="Active client configurations">
+      <template #actions v-if="config?.length">
+        <async-button class="btn btn-primary" @click.prevent="handleAddConnection">
+          <plus-icon class="me-1" :size="18"/>
           Create Connection
-      </async-button>
-      <connection-details :id="id" :onDelete="handleDeleteConnection"></connection-details>
-    </template>
+        </async-button>
+      </template>
+    </page-header>
 
-    <add-connection-modal :id="id" ref="addConnection"></add-connection-modal>
+    <div class="container-xl" v-if="!loading">
+      <empty v-if="!config?.length" :id="id" @add="handleAddConnection"></empty>
+      <connection-details v-else :id="id" :onDelete="handleDeleteConnection"></connection-details>
+      <add-connection-modal :id="id" ref="addConnection"></add-connection-modal>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
+import PageHeader from '@/components/PageHeader.vue'
 import Empty from '@/components/connections/Empty.vue'
 import ConnectionDetails from '@/components/connections/Details.vue'
 import { useConfigStore } from '@/stores/config'
 import { computed, onMounted, onBeforeUnmount, ref } from 'vue'
 import AddConnectionModal from '@/components/connections/AddConnectionModal.vue'
+import AsyncButton from '@/components/AsyncButton.vue'
+import { PlusIcon } from 'vue-tabler-icons'
 
 interface Props {
   id: string
