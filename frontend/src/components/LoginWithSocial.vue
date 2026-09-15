@@ -1,6 +1,6 @@
 <template>
   <button class="btn btn-outline-google-plus btn-block mt-2 fs-2" @click="handleLogin">
-    <brand-google-icon stroke-width="2"></brand-google-icon> google
+    <brand-google-icon></brand-google-icon> google
   </button>
 </template>
 <script setup lang="ts">
