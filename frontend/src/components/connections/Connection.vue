@@ -32,24 +32,24 @@
       <div class="card">
         <ul class="nav nav-tabs nav-tabs-alt" data-bs-toggle="tabs" role="tablist">
           <li class="nav-item">
-            <a href="#tabs-details" class="nav-link active" data-bs-toggle="tab" role="tab" tabindex="-1">
+            <a :href="`#tabs-details-${config.id}`" class="nav-link active" data-bs-toggle="tab" role="tab" tabindex="-1">
               <network-icon class="me-2"/>
               Details</a>
           </li>
           <li class="nav-item">
-            <a href="#tabs-config" class="nav-link" data-bs-toggle="tab" role="tab">
+            <a :href="`#tabs-config-${config.id}`" class="nav-link" data-bs-toggle="tab" role="tab">
               <file-description-icon class="me-2"/>
               Config</a>
           </li>
           <li class="nav-item">
-            <a href="#tabs-qrcode" class="nav-link" data-bs-toggle="tab" role="tab">
+            <a :href="`#tabs-qrcode-${config.id}`" class="nav-link" data-bs-toggle="tab" role="tab">
               <qrcode-icon class="me-2"/>
               QRCode</a>
           </li>
         </ul>
         <div class="card-body">
           <div class="tab-content">
-            <div class="tab-pane active show" id="tabs-details" role="tabpanel">
+            <div class="tab-pane active show" :id="`tabs-details-${config.id}`" role="tabpanel">
               <div class="datagrid" v-if="config">
                 <div class="datagrid-item">
                   <div class="datagrid-title">Peer Name</div>
@@ -82,12 +82,12 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane" id="tabs-config" role="tabpanel">
+            <div class="tab-pane" :id="`tabs-config-${config.id}`" role="tabpanel">
               <div>
                 <pre>{{ generateString(props.config) }}</pre>
               </div>
             </div>
-            <div class="tab-pane" id="tabs-qrcode" role="tabpanel">
+            <div class="tab-pane" :id="`tabs-qrcode-${config.id}`" role="tabpanel">
               <div class="text-center">
                 <qrcode-vue :value="generateString(props.config)" :size="300" level="H" render-as="svg" :margin="10"/>
               </div>
@@ -102,7 +102,7 @@
 import { NetworkIcon, FileDescriptionIcon, QrcodeIcon } from 'vue-tabler-icons'
 import QrcodeVue from 'qrcode.vue'
 import { generateString } from '@/utils/config-string-generator'
-import { computed, onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import StatsCard from '@/components/StatsCard.vue'
 import prettyBytes from 'pretty-bytes'
 import swal from 'sweetalert'

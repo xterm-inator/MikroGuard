@@ -1,5 +1,5 @@
 <template>
-  <div class="card mb-3" v-for="detail in config">
+  <div class="card mb-3" v-for="detail in config" :key="detail.id">
     <div class="card-body">
       <connection :config="detail" :onDelete="props.onDelete"/>
     </div>
