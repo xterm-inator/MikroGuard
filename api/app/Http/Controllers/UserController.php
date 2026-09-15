@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Peer;
 use App\Models\User;
 use \App\Http\Resources\UserResource as UserResource;
 use App\RouterOS\WireGuard;
@@ -40,7 +41,7 @@ class UserController extends Controller
     {
         $this->authorize('delete', $user);
 
-        $user->config?->delete();
+        $user->peers->each(fn (Peer $peer) => $peer->delete());
         $user->oauthProviders()->delete();
 
         $user->delete();
