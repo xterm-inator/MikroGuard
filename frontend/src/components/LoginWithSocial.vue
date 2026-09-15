@@ -1,11 +1,11 @@
 <template>
   <button class="btn btn-outline-google-plus btn-block mt-2 fs-2" @click="handleLogin">
-    <brand-google-icon stroke-width="2" /> google
+    <brand-google-icon></brand-google-icon> google
   </button>
 </template>
 <script setup lang="ts">
 import { BrandGoogleIcon } from 'vue-tabler-icons'
-import { defineEmits, onBeforeUnmount, onMounted } from 'vue'
+import { onBeforeUnmount, onMounted } from 'vue'
 import { useAppStore } from '@/stores/app'
 
 const emit = defineEmits(['authenticated'])

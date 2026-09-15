@@ -32,24 +32,24 @@
       <div class="card">
         <ul class="nav nav-tabs nav-tabs-alt" data-bs-toggle="tabs" role="tablist">
           <li class="nav-item">
-            <a href="#tabs-details" class="nav-link active" data-bs-toggle="tab" role="tab" tabindex="-1">
+            <a :href="`#tabs-details-${config.id}`" class="nav-link active" data-bs-toggle="tab" role="tab" tabindex="-1">
               <network-icon class="me-2"/>
               Details</a>
           </li>
           <li class="nav-item">
-            <a href="#tabs-config" class="nav-link" data-bs-toggle="tab" role="tab">
+            <a :href="`#tabs-config-${config.id}`" class="nav-link" data-bs-toggle="tab" role="tab">
               <file-description-icon class="me-2"/>
               Config</a>
           </li>
           <li class="nav-item">
-            <a href="#tabs-qrcode" class="nav-link" data-bs-toggle="tab" role="tab">
+            <a :href="`#tabs-qrcode-${config.id}`" class="nav-link" data-bs-toggle="tab" role="tab">
               <qrcode-icon class="me-2"/>
               QRCode</a>
           </li>
         </ul>
         <div class="card-body">
           <div class="tab-content">
-            <div class="tab-pane active show" id="tabs-details" role="tabpanel">
+            <div class="tab-pane active show" :id="`tabs-details-${config.id}`" role="tabpanel">
               <div class="datagrid" v-if="config">
                 <div class="datagrid-item">
                   <div class="datagrid-title">Peer Name</div>
@@ -82,14 +82,14 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane" id="tabs-config" role="tabpanel">
+            <div class="tab-pane" :id="`tabs-config-${config.id}`" role="tabpanel">
               <div>
-                <pre>{{ configString }}</pre>
+                <pre>{{ generateString(props.config) }}</pre>
               </div>
             </div>
-            <div class="tab-pane" id="tabs-qrcode" role="tabpanel">
+            <div class="tab-pane" :id="`tabs-qrcode-${config.id}`" role="tabpanel">
               <div class="text-center">
-                <qrcode-vue :value="configString" :size="300" level="H" render-as="svg" :margin="10"/>
+                <qrcode-vue :value="generateString(props.config)" :size="300" level="H" render-as="svg" :margin="10"/>
               </div>
             </div>
           </div>
@@ -98,12 +98,11 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { NetworkIcon, FileDescriptionIcon, QrcodeIcon } from 'vue-tabler-icons'
 import QrcodeVue from 'qrcode.vue'
 import { generateString } from '@/utils/config-string-generator'
-import { useConfigStore } from '@/stores/config'
-import { computed, onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import StatsCard from '@/components/StatsCard.vue'
 import prettyBytes from 'pretty-bytes'
 import swal from 'sweetalert'
@@ -112,38 +111,28 @@ import { saveAs } from 'file-saver'
 import { kebabCase } from 'lodash'
 import Hidden from '@/components/Hidden.vue'
 import dayjs from 'dayjs'
+import type { Config } from '@/stores/config'
 
 interface Props {
-  id: string
+  config: Config
+  onDelete: (id: string) => Promise<void>
 }
 
 const props = defineProps<Props>()
 
-const configStore = useConfigStore()
-
-let configString = ref<string>('')
-
-const config = computed(() => configStore.config)
-
 const lastHandshake = computed(() => {
-  if (configStore.config && configStore.config.last_handshake) {
-    return dayjs.utc(configStore.config.last_handshake).local().fromNow()
+  if (props.config && props.config.last_handshake) {
+    return dayjs.utc(props.config.last_handshake).local().fromNow()
   }
 
   return '-'
 })
 
-onMounted(() => {
-  if (configStore.config) {
-    configString.value = generateString(configStore.config)
-  }
-})
-
 async function handleDownload(): Promise<void> {
-  if (configStore.config) {
-    const configName = kebabCase(configStore.config.server_name)
+  if (props.config) {
+    const configName = kebabCase(props.config.server_name)
     let zip = new JSZip();
-    zip.file(`${configName}.conf`, configString.value)
+    zip.file(`${configName}.conf`, generateString(props.config))
     const content = await zip.generateAsync({ type: 'blob' })
     saveAs(content, `${configName}.zip`)
   }
@@ -152,7 +141,7 @@ async function handleDownload(): Promise<void> {
 async function handleDelete(): Promise<void> {
   const response = await swal({
     title: 'Are you sure?',
-    text: 'This will remove all WireGuard settings from the router for this user.',
+    text: 'This will remove all WireGuard settings from the router for this connection.',
     icon: 'warning',
     buttons: {
       cancel: true,
@@ -165,8 +154,8 @@ async function handleDelete(): Promise<void> {
     dangerMode: true
   })
   if (response) {
-    await configStore.deleteConfig(props.id)
-    configStore.resetConfig()
+    await props.onDelete(props.config.id)
+
     if (swal.stopLoading && swal.close) {
       swal.stopLoading()
       swal.close()

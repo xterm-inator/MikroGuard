@@ -9,8 +9,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
-    }
+      // '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
+    },
+    dedupe: ['vue'],
   },
   server: {
     host: true,
@@ -19,6 +20,14 @@ export default defineConfig({
     },
     watch: {
       usePolling: true
+    },
+    fs: {
+      allow: [
+        // Allow serving files from one level up to the project root
+        '..',
+        // OR explicitly allow fontawesome
+        path.resolve(__dirname, 'node_modules'),
+      ],
     }
   },
   build: {

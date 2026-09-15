@@ -5,7 +5,7 @@
     @click="handleClick"
   >
     <span class="spinner spinner-border" v-if="loadingState"></span>
-    <slot v-else />
+    <slot v-else></slot>
   </button>
 </template>
 <script lang="ts">

@@ -1,24 +1,32 @@
-FROM node:jod
+FROM node:lts-jod
 
-# Copy across the "package.json" and "package-lock" files to install dependencies.
-RUN mkdir -p /opt/app
-COPY package.json package-lock.json /opt/
+ARG UID=1000
+ARG GID=1000
 
-# Install dependencies
-RUN cd /opt && npm install
+RUN groupmod --gid $GID node
+RUN usermod  --uid $UID node
 
-# Define the path to the "node_modules" directory.
-ENV NODE_PATH /opt/node_modules
-ENV PATH /opt/node_modules/.bin:$PATH
+# Fix permission error for Vite.
+WORKDIR /home/node/app
+RUN chown -R node /home/node/app
 
-# Copy the entire application into our application directory.
-COPY . /opt/app
-
+# Switch to the node user.
 USER node
-RUN mkdir /home/node/npm-global && npm config set prefix '~/npm-global'
 
-# Set the working directory, expose the port NPM runs on, and run the dev command.
-WORKDIR /opt/app
+# Install dependencies a level up from the app, node traverses upwards to find node modules.
+WORKDIR /home/node
+COPY --chown=node:node package.json package-lock.json ./
+RUN npm install
+
+# Ensure paths are set correctly so executables can be used.
+ENV NODE_PATH /home/node/node_modules
+ENV PATH /home/node/node_modules/.bin:$PATH
+
+# Copy app into the app directory.
+WORKDIR /home/node/app
+COPY --chown=node:node . .
+
+# Expose port and run the dev command.
 EXPOSE 8080
-
 CMD ["npm", "run", "dev"]
+

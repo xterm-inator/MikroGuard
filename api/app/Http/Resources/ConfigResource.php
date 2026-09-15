@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Config extends JsonResource
+class ConfigResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,6 +15,7 @@ class Config extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->uuid,
             'peer_name' => $this->peer_name,
             'peer_private_key' => $this->peer_private_key,
             'peer_public_key' => $this->peer_public_key,

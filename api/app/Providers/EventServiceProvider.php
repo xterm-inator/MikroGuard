@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Events\ConfigCreated;
-use App\Events\ConfigDeleting;
+use App\Events\PeerCreated;
+use App\Events\PeerDeleting;
 use App\Listeners\CreateWireGuardPeer;
 use App\Listeners\RemoveWireGuardPeer;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -16,10 +16,10 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        ConfigCreated::class => [
+        PeerCreated::class => [
             CreateWireGuardPeer::class,
         ],
-        ConfigDeleting::class => [
+        PeerDeleting::class => [
             RemoveWireGuardPeer::class
         ]
     ];

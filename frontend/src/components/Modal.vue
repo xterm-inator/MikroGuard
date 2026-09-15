@@ -11,11 +11,11 @@
         </div>
 
         <div class="modal-body">
-          <slot />
+          <slot></slot>
         </div>
 
         <div class="modal-footer">
-          <slot name="footer" v-bind="{ close }"/>
+          <slot name="footer" v-bind="{ close }"></slot>
         </div>
       </div>
     </div>

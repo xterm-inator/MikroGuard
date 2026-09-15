@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { http } from '@/utils'
 
 export interface Config {
+  id: string
   peer_name: string
   peer_private_key: string
   peer_public_key: string
@@ -23,7 +24,8 @@ export interface Config {
 export const useConfigStore = defineStore({
   id: 'config',
   state: () => ({
-    config: <Config|null>null,
+    collection: <Config[]>[],
+    config: <Config[]|null>null,
   }),
 
   getters: {
@@ -38,18 +40,14 @@ export const useConfigStore = defineStore({
       return response
     },
 
-    async createConfig(userId: string): Promise<any> {
-      const response = await http.post(`config/${userId}`)
-
-      this.config = response.data.data
-
-      return response
+    async createConfig(userId: string, name: string): Promise<any> {
+      await http.post(`config/${userId}`, { name })
     },
 
-    async deleteConfig(userId: string): Promise<any> {
-      await http.delete(`config/${userId}`)
+    async deleteConfig(userId: string, configId: string): Promise<any> {
+      await http.delete(`config/${userId}/${configId}`)
 
-      this.resetConfig()
+      await this.getConfig(userId)
     },
 
     resetConfig (): void {

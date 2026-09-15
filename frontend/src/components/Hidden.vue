@@ -3,7 +3,7 @@
     @mouseover="hover = true"
     @mouseleave="hover = false"
   >
-    <slot v-if="hover" />
+    <slot v-if="hover"></slot>
     <div v-else>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</div>
   </div>
 </template>

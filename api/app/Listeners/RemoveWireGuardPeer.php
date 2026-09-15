@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\ConfigDeleting;
+use App\Events\PeerDeleting;
 use App\RouterOS\WireGuard;
 
 class RemoveWireGuardPeer
@@ -20,10 +20,10 @@ class RemoveWireGuardPeer
     /**
      * Handle the event.
      *
-     * @param  \App\Events\ConfigDeleting  $event
+     * @param  \App\Events\PeerDeleting  $event
      * @return void
      */
-    public function handle(ConfigDeleting $event)
+    public function handle(PeerDeleting $event)
     {
         WireGuard::deletePeer($event->config->peer_public_key);
     }

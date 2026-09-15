@@ -70,6 +70,10 @@ const handleLogin = handleSubmit(async (values, actions) => {
 
     handleCompletedLogin()
   } catch (e: any) {
+    if (!e.response) {
+      throw e
+    }
+
     if (e.response.status === 422) {
       actions.setErrors(e.response.data.errors)
     } else if (e.response.status === 429) {
@@ -83,6 +87,6 @@ const handleLogin = handleSubmit(async (values, actions) => {
 })
 
 const handleCompletedLogin = () => {
-  router.push({ name: 'connection' })
+  router.push({ name: 'connections' })
 }
 </script>

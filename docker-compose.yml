@@ -1,7 +1,13 @@
+volumes:
+  node_modules:
+
 services:
     api:
         build:
             context: ./api/
+            args:
+                UID: ${UID:-1000}
+                GID: ${GID:-1000}
         volumes:
             - ./php.ini:/usr/local/etc/php/conf.d/php.ini
             - ./api:/var/www
@@ -10,10 +16,13 @@ services:
     vue:
         build:
             context: ./frontend
+            args:
+                UID: ${UID:-1000}
+                GID: ${GID:-1000}
         ports:
-            - "3000:3000"
+            - "3000:5173"
             - "3101:3101"
         volumes:
-            - ./frontend/:/opt/app
-            - /opt/node_modules
+            - ./frontend/:/home/node/app
+            - node_modules:/home/node/node_modules
         user: node
