@@ -19,12 +19,6 @@ $card-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.0
 // Import Tabler Core
 @import "@tabler/core/scss/tabler";
 
-$google-plus: #dd4b39 !default;
-
-.btn-outline-google-plus {
-    @include button-outline-variant($google-plus);
-}
-
 .swal-modal {
   will-change: unset!important;
 }

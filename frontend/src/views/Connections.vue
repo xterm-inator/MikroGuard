@@ -10,8 +10,8 @@
     </page-header>
 
     <div class="container-xl" v-if="!loading">
-      <empty v-if="!config?.length" :id="id" @add="handleAddConnection"></empty>
-      <connection-details v-else :id="id" :onDelete="handleDeleteConnection"></connection-details>
+      <empty v-if="!config?.length" @add="handleAddConnection"></empty>
+      <connection-details v-else :onDelete="handleDeleteConnection"></connection-details>
       <add-connection-modal :id="id" ref="addConnection"></add-connection-modal>
     </div>
   </div>

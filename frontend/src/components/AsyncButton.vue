@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="type"
     :class="computedClasses"
     :disabled="loadingState"
     @click="handleClick"
@@ -15,6 +16,14 @@ export default {
 </script>
 <script setup lang="ts">
 import { computed, ref, useAttrs } from 'vue'
+
+interface Props {
+  type?: 'button' | 'submit' | 'reset'
+}
+
+withDefaults(defineProps<Props>(), {
+  type: 'button'
+})
 
 const attrs: any = useAttrs()
 let isLoading = ref<boolean>(false)

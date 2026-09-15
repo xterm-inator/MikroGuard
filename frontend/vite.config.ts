@@ -32,5 +32,15 @@ export default defineConfig({
   },
   build: {
     sourcemap: true
-  }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'legacy-js-api'],
+      },
+      sass: {
+        silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'legacy-js-api'],
+      },
+    },
+  },
 })
