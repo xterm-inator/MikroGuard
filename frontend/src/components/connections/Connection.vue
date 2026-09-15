@@ -119,12 +119,6 @@ interface Props {
 
 const props = defineProps<Props>()
 
-onMounted(() => {
-  if (props.config) {
-    props.value = generateString(props.config)
-  }
-})
-
 const lastHandshake = computed(() => {
   if (props.config && props.config.last_handshake) {
     return dayjs.utc(props.config.last_handshake).local().fromNow()
@@ -137,7 +131,7 @@ async function handleDownload(): Promise<void> {
   if (props.config) {
     const configName = kebabCase(props.config.server_name)
     let zip = new JSZip();
-    zip.file(`${configName}.conf`, props.value)
+    zip.file(`${configName}.conf`, generateString(props.config))
     const content = await zip.generateAsync({ type: 'blob' })
     saveAs(content, `${configName}.zip`)
   }
@@ -146,7 +140,7 @@ async function handleDownload(): Promise<void> {
 async function handleDelete(): Promise<void> {
   const response = await swal({
     title: 'Are you sure?',
-    text: 'This will remove all WireGuard settings from the router for this user.',
+    text: 'This will remove all WireGuard settings from the router for this connection.',
     icon: 'warning',
     buttons: {
       cancel: true,
@@ -160,7 +154,7 @@ async function handleDelete(): Promise<void> {
   })
   if (response) {
     await configStore.deleteConfig(props.id)
-    configStore.resetConfig()
+
     if (swal.stopLoading && swal.close) {
       swal.stopLoading()
       swal.close()
