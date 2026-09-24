@@ -5,9 +5,9 @@
   </template>
 </template>
 
-<style lang="sass">
-@import '@/assets/scss/app.scss'
-@import '@vueform/multiselect/themes/default.scss'
+<style lang="scss">
+@import '@/assets/scss/app.scss';
+@import '@vueform/multiselect/themes/default.scss';
 </style>
 
 <script setup lang="ts">

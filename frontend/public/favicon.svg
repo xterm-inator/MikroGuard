@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <!-- Background Shield Linear Gradient -->
+    <linearGradient id="mgShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07101e" />
+      <stop offset="45%" stop-color="#0c1d3b" />
+      <stop offset="100%" stop-color="#03060e" />
+    </linearGradient>
+
+    <!-- Shield Border Neon Gradient -->
+    <linearGradient id="mgBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="25%" stop-color="#0ea5e9" />
+      <stop offset="70%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+
+    <!-- M Wing Left Leg (Electric Cyan -> Deep Blue) -->
+    <linearGradient id="mgWingLeftLeg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+
+    <!-- M Wing Left Diagonal (Sky Blue -> Cerulean) -->
+    <linearGradient id="mgWingLeftDiag" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+
+    <!-- M Wing Right Diagonal (Cobalt -> Royal) -->
+    <linearGradient id="mgWingRightDiag" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+
+    <!-- M Wing Right Leg (Indigo -> Violet) -->
+    <linearGradient id="mgWingRightLeg" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#3730a3" />
+    </linearGradient>
+
+    <!-- Keel Guard Base Gradient -->
+    <linearGradient id="mgKeelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#030712" />
+    </linearGradient>
+
+    <!-- Core Nexus / Eye Gradient -->
+    <linearGradient id="mgCoreGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#00f2fe" />
+    </linearGradient>
+
+    <!-- Drop Shadow & Glow Filters -->
+    <filter id="mgShieldShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#0284c7" flood-opacity="0.38" />
+    </filter>
+
+    <filter id="mgGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Ambient Center Light -->
+    <radialGradient id="mgCenterAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.35" />
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Ambient Glow Behind Shield -->
+  <circle cx="256" cy="256" r="210" fill="url(#mgCenterAura)" />
+
+  <!-- Main Cyber Shield Base -->
+  <path d="M 256 34
+           C 362 34 438 78 438 174
+           C 438 318 344 418 256 476
+           C 168 418 74 318 74 174
+           C 74 78 150 34 256 34 Z"
+        fill="url(#mgShieldGrad)"
+        filter="url(#mgShieldShadow)" />
+
+  <!-- Shield Outer Neon Border -->
+  <path d="M 256 34
+           C 362 34 438 78 438 174
+           C 438 318 344 418 256 476
+           C 168 418 74 318 74 174
+           C 74 78 150 34 256 34 Z"
+        fill="none"
+        stroke="url(#mgBorderGrad)"
+        stroke-width="7"
+        stroke-linecap="round"
+        stroke-linejoin="round" />
+
+  <!-- Inner Inset Shield Border -->
+  <path d="M 256 50
+           C 350 50 420 88 420 174
+           C 420 304 332 396 256 452
+           C 180 396 92 304 92 174
+           C 92 88 162 50 256 50 Z"
+        fill="none"
+        stroke="#38bdf8"
+        stroke-opacity="0.22"
+        stroke-width="2" />
+
+  <!-- High-Tech Circuit Traces & Antenna -->
+  <g opacity="0.85">
+    <line x1="256" y1="50" x2="256" y2="98" stroke="#00f2fe" stroke-width="2.5" stroke-linecap="round" />
+    <circle cx="256" cy="98" r="4.5" fill="#08101e" stroke="#00f2fe" stroke-width="2" />
+    <circle cx="256" cy="98" r="2" fill="#ffffff" />
+  </g>
+
+  <!-- ==================== LOWER WIRE-GUARD ANCHOR KEEL ==================== -->
+  <path d="M 256 280 L 314 348 L 256 436 L 198 348 Z"
+        fill="url(#mgKeelGrad)"
+        stroke="url(#mgBorderGrad)"
+        stroke-width="3"
+        stroke-linejoin="round" />
+
+  <!-- WireGuard Pulse Tunnel Ray -->
+  <line x1="256" y1="280" x2="256" y2="426" stroke="#00f2fe" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round" opacity="0.9" />
+
+  <!-- ==================== THE MIKRO-GUARD 'M' BODY ==================== -->
+
+  <!-- Left Upright Leg -->
+  <path d="M 130 160
+           L 186 116
+           L 186 364
+           L 130 324 Z"
+        fill="url(#mgWingLeftLeg)" />
+
+  <!-- Left Diagonal Chute -->
+  <path d="M 186 116
+           L 256 218
+           L 256 280
+           L 186 200 Z"
+        fill="url(#mgWingLeftDiag)" />
+
+  <!-- Right Diagonal Chute -->
+  <path d="M 326 116
+           L 256 218
+           L 256 280
+           L 326 200 Z"
+        fill="url(#mgWingRightDiag)" />
+
+  <!-- Right Upright Leg -->
+  <path d="M 382 160
+           L 326 116
+           L 326 364
+           L 382 324 Z"
+        fill="url(#mgWingRightLeg)" />
+
+  <!-- Crisp Light Specular Highlights on M -->
+  <path d="M 130 324 L 130 160 L 186 116 L 256 218 L 326 116 L 382 160 L 382 324"
+        fill="none"
+        stroke="#ffffff"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        opacity="0.95" />
+
+  <path d="M 186 116 L 186 364"
+        fill="none"
+        stroke="#38bdf8"
+        stroke-width="2"
+        opacity="0.8" />
+
+  <path d="M 326 116 L 326 364"
+        fill="none"
+        stroke="#818cf8"
+        stroke-width="2"
+        opacity="0.8" />
+
+  <path d="M 130 324 L 186 364"
+        fill="none"
+        stroke="#0284c7"
+        stroke-width="2"
+        opacity="0.8" />
+
+  <path d="M 382 324 L 326 364"
+        fill="none"
+        stroke="#6366f1"
+        stroke-width="2"
+        opacity="0.8" />
+
+  <!-- ==================== WIREGUARD CRYPTOGRAPHIC NEXUS ==================== -->
+
+  <!-- Outer Cryptographic Core Halo -->
+  <circle cx="256" cy="248" r="38" fill="#080e1a" stroke="url(#mgBorderGrad)" stroke-width="4" />
+
+  <!-- Tunnel Conduit Aperture Ring -->
+  <circle cx="256" cy="248" r="26" fill="#0b162c" stroke="#00f2fe" stroke-width="2.5" />
+
+  <!-- Glowing Singularity / Keyhole Pulse -->
+  <circle cx="256" cy="248" r="14" fill="url(#mgCoreGlowGrad)" filter="url(#mgGlow)" />
+
+  <!-- Cryptographic Keyhole Slit -->
+  <path d="M 253 243 C 253 241.3 254.3 240 256 240 C 257.7 240 259 241.3 259 243 C 259 244.2 258.3 245.2 257.3 245.7 L 258 254 L 254 254 L 254.7 245.7 C 253.7 245.2 253 244.2 253 243 Z"
+        fill="#070d18" />
+
+  <!-- ==================== SATELLITE NETWORK ROUTING NODES ==================== -->
+
+  <!-- Left Shoulder Node -->
+  <circle cx="130" cy="160" r="7.5" fill="#091326" stroke="#00f2fe" stroke-width="2.5" />
+  <circle cx="130" cy="160" r="2.5" fill="#ffffff" />
+
+  <!-- Left Peak Node -->
+  <circle cx="186" cy="116" r="7" fill="#091326" stroke="#38bdf8" stroke-width="2.5" />
+  <circle cx="186" cy="116" r="2.5" fill="#ffffff" />
+
+  <!-- Right Peak Node -->
+  <circle cx="326" cy="116" r="7" fill="#091326" stroke="#a78bfa" stroke-width="2.5" />
+  <circle cx="326" cy="116" r="2.5" fill="#ffffff" />
+
+  <!-- Right Shoulder Node -->
+  <circle cx="382" cy="160" r="7.5" fill="#091326" stroke="#818cf8" stroke-width="2.5" />
+  <circle cx="382" cy="160" r="2.5" fill="#ffffff" />
+
+  <!-- Bottom Anchor Node -->
+  <circle cx="256" cy="436" r="6" fill="#091326" stroke="#00f2fe" stroke-width="2.5" />
+  <circle cx="256" cy="436" r="2.5" fill="#38bdf8" />
+</svg>

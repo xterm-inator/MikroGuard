@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" fill="none" width="320" height="64">
+  <defs>
+    <!-- Background Shield Linear Gradient -->
+    <linearGradient id="logoShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07101e" />
+      <stop offset="45%" stop-color="#0c1d3b" />
+      <stop offset="100%" stop-color="#03060e" />
+    </linearGradient>
+
+    <!-- Shield Border Neon Gradient -->
+    <linearGradient id="logoBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="25%" stop-color="#0ea5e9" />
+      <stop offset="70%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+
+    <!-- M Wing Left Leg (Electric Cyan -> Deep Blue) -->
+    <linearGradient id="logoWingLeftLeg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+
+    <!-- M Wing Left Diagonal (Sky Blue -> Cerulean) -->
+    <linearGradient id="logoWingLeftDiag" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+
+    <!-- M Wing Right Diagonal (Cobalt -> Royal) -->
+    <linearGradient id="logoWingRightDiag" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+
+    <!-- M Wing Right Leg (Indigo -> Violet) -->
+    <linearGradient id="logoWingRightLeg" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#3730a3" />
+    </linearGradient>
+
+    <!-- Keel Guard Base Gradient -->
+    <linearGradient id="logoKeelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#030712" />
+    </linearGradient>
+
+    <!-- Core Nexus / Eye Gradient -->
+    <linearGradient id="logoCoreGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#00f2fe" />
+    </linearGradient>
+
+    <!-- Typography Text Gradient -->
+    <linearGradient id="logoTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+
+    <!-- Ambient Glow -->
+    <radialGradient id="logoCenterAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.35" />
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Scaled Icon Mark -->
+  <g transform="translate(6, 4) scale(0.109375)">
+    <!-- Ambient Glow Behind Shield -->
+    <circle cx="256" cy="256" r="210" fill="url(#logoCenterAura)" />
+
+    <!-- Main Cyber Shield Base -->
+    <path d="M 256 34
+             C 362 34 438 78 438 174
+             C 438 318 344 418 256 476
+             C 168 418 74 318 74 174
+             C 74 78 150 34 256 34 Z"
+          fill="url(#logoShieldGrad)" />
+
+    <!-- Shield Outer Neon Border -->
+    <path d="M 256 34
+             C 362 34 438 78 438 174
+             C 438 318 344 418 256 476
+             C 168 418 74 318 74 174
+             C 74 78 150 34 256 34 Z"
+          fill="none"
+          stroke="url(#logoBorderGrad)"
+          stroke-width="10"
+          stroke-linecap="round"
+          stroke-linejoin="round" />
+
+    <!-- Inner Inset Shield Border -->
+    <path d="M 256 50
+             C 350 50 420 88 420 174
+             C 420 304 332 396 256 452
+             C 180 396 92 304 92 174
+             C 92 88 162 50 256 50 Z"
+          fill="none"
+          stroke="#38bdf8"
+          stroke-opacity="0.25"
+          stroke-width="3" />
+
+    <!-- Antenna -->
+    <line x1="256" y1="50" x2="256" y2="98" stroke="#00f2fe" stroke-width="4" stroke-linecap="round" />
+    <circle cx="256" cy="98" r="7" fill="#08101e" stroke="#00f2fe" stroke-width="3" />
+
+    <!-- Lower Keel -->
+    <path d="M 256 280 L 314 348 L 256 436 L 198 348 Z"
+          fill="url(#logoKeelGrad)"
+          stroke="url(#logoBorderGrad)"
+          stroke-width="4"
+          stroke-linejoin="round" />
+    <line x1="256" y1="280" x2="256" y2="426" stroke="#00f2fe" stroke-width="4" stroke-dasharray="6 5" stroke-linecap="round" />
+
+    <!-- Left Leg -->
+    <path d="M 130 160 L 186 116 L 186 364 L 130 324 Z"
+          fill="url(#logoWingLeftLeg)" />
+
+    <!-- Left Diagonal -->
+    <path d="M 186 116 L 256 218 L 256 280 L 186 200 Z"
+          fill="url(#logoWingLeftDiag)" />
+
+    <!-- Right Diagonal -->
+    <path d="M 326 116 L 256 218 L 256 280 L 326 200 Z"
+          fill="url(#logoWingRightDiag)" />
+
+    <!-- Right Leg -->
+    <path d="M 382 160 L 326 116 L 326 364 L 382 324 Z"
+          fill="url(#logoWingRightLeg)" />
+
+    <!-- Specular Highlight Lines -->
+    <path d="M 130 324 L 130 160 L 186 116 L 256 218 L 326 116 L 382 160 L 382 324"
+          fill="none"
+          stroke="#ffffff"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round" />
+
+    <!-- Core Nexus -->
+    <circle cx="256" cy="248" r="40" fill="#080e1a" stroke="url(#logoBorderGrad)" stroke-width="5" />
+    <circle cx="256" cy="248" r="28" fill="#0b162c" stroke="#00f2fe" stroke-width="3" />
+    <circle cx="256" cy="248" r="16" fill="url(#logoCoreGlowGrad)" />
+
+    <!-- Keyhole -->
+    <path d="M 252 242 C 252 239.8 253.8 238 256 238 C 258.2 238 260 239.8 260 242 C 260 243.5 259 244.7 257.7 245.4 L 258.5 256 L 253.5 256 L 254.3 245.4 C 253 244.7 252 243.5 252 242 Z"
+          fill="#070d18" />
+
+    <!-- Nodes -->
+    <circle cx="130" cy="160" r="10" fill="#091326" stroke="#00f2fe" stroke-width="3.5" />
+    <circle cx="130" cy="160" r="3.5" fill="#ffffff" />
+    <circle cx="186" cy="116" r="9" fill="#091326" stroke="#38bdf8" stroke-width="3" />
+    <circle cx="186" cy="116" r="3.5" fill="#ffffff" />
+    <circle cx="326" cy="116" r="9" fill="#091326" stroke="#a78bfa" stroke-width="3" />
+    <circle cx="326" cy="116" r="3.5" fill="#ffffff" />
+    <circle cx="382" cy="160" r="10" fill="#091326" stroke="#818cf8" stroke-width="3.5" />
+    <circle cx="382" cy="160" r="3.5" fill="#ffffff" />
+    <circle cx="256" cy="436" r="8" fill="#091326" stroke="#00f2fe" stroke-width="3" />
+  </g>
+
+  <!-- Typography -->
+  <text x="76" y="37" font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="800" fill="#ffffff" letter-spacing="-0.5">
+    Mikro<tspan fill="url(#logoTextGrad)">Guard</tspan>
+  </text>
+  <text x="77" y="51" font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" fill="#94a3b8" letter-spacing="1.4">
+    WIREGUARD FOR MIKROTIK
+  </text>
+</svg>
