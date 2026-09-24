@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-outline-google-plus btn-block mt-2 fs-2" @click="handleLogin">
+  <button class="btn btn-outline-google mt-2 fs-2" @click="handleLogin">
     <brand-google-icon></brand-google-icon> google
   </button>
 </template>
