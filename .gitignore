@@ -11,3 +11,4 @@ yarn-error.log
 /.idea
 /.vscode
 docker-compose-prod.yml
+frontend/dist
